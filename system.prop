@@ -138,3 +138,57 @@ ro.build.selinux=1
 persist.camera.imglib.fddsp=1
 persist.camera.llc=1
 persist.camera.llnoise=1
+
+#force HAL1 for some apps
+camera.hal1.packagelist=com.skype.raider,com.google.android.talk,com.whatsapp,
+    com.instagram.android,com.snapchat.android,org.codeaurora.snapcam,
+    com.google.android.GoogleCamera,com.facebook.orca,com.facebook.katana,
+    com.flavionet.android.camera.lite,com.nianticlabs.pokemongo
+
+#Disable property for hard bypass
+audio.dolby.ds2.hardbypass=false
+
+audio.offload.passthrough=false
+audio.offload.multiple.enabled=true
+
+#property to enable VDS WFD solution
+persist.hwc.enable_vds=1
+
+# FRP
+ro.frp.pst=/dev/block/sda14
+
+# DRM
+drm.service.enabled=true
+
+#Enable stm events
+ro.dbg.coresight.config=none
+#property to enable fingerprint
+persist.qfp=false
+
+#default pd_enable value
+persist.sys.pd_enable=0
+#Disable rotator split feature
+sdm.debug.disable_rotator_split=1
+
+#Increase cached app limit
+ro.sys.fw.bg_apps_limit=45
+
+#reschedule killed services during app launch
+ro.am.reschedule_service=true
+
+#set cutoff voltage to 3400mV
+ro.cutoff_voltage_mv=3400
+
+# Dalvik properties
+dalvik.vmheapstartsize=8m
+dalvik.vm.heapgrowthlimit=384m
+dalvik.vm.heapsize=1024m
+dalvik.vm.heaptargetutilization=0.75
+dalvik.vm.heapminfree=2m
+dalvik.vm.heapmaxfree=8m
+
+dalvik.vm.dex2oat-swap=false
+
+ro.sf.lcd_density=480
+enable_prefetch=1
+>>>>>>> 001784c... oneplus3: force HAL1 for certain apps
