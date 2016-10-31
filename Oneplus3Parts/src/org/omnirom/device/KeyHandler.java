@@ -51,6 +51,7 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final boolean DEBUG = true;
     protected static final int GESTURE_REQUEST = 1;
     private static final int GESTURE_WAKELOCK_DURATION = 2000;
+    private static String KEY_CONTROL_PATH = "/proc/s1302/virtual_key";
 
     // Supported scancodes
     //#define KEY_GESTURE_CIRCLE      250 // draw circle to lunch camera
@@ -187,18 +188,21 @@ public class KeyHandler implements DeviceKeyHandler {
                     } catch (Exception e) {
                         // Ignore
                     }
+                    mGestureWakeLock.release();
                 }
                 break;
             case GESTURE_II_SCANCODE:
                 if (DEBUG) Log.i(TAG, "GESTURE_II_SCANCODE");
                 mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
                 dispatchMediaKeyWithWakeLockToAudioService(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
+                mGestureWakeLock.release();
                 break;
             case GESTURE_LEFT_V_SCANCODE:
                 if (isMusicActive()) {
                     if (DEBUG) Log.i(TAG, "GESTURE_LEFT_V_SCANCODE");
                     mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
                     dispatchMediaKeyWithWakeLockToAudioService(KeyEvent.KEYCODE_MEDIA_PREVIOUS);
+                    mGestureWakeLock.release();
                 }
                 break;
             case GESTURE_RIGHT_V_SCANCODE:
@@ -206,6 +210,7 @@ public class KeyHandler implements DeviceKeyHandler {
                     if (DEBUG) Log.i(TAG, "GESTURE_RIGHT_V_SCANCODE");
                     mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
                     dispatchMediaKeyWithWakeLockToAudioService(KeyEvent.KEYCODE_MEDIA_NEXT);
+                    mGestureWakeLock.release();
                 }
                 break;
             case KEY_MODE_TOTAL_SILENCE:
@@ -216,6 +221,7 @@ public class KeyHandler implements DeviceKeyHandler {
                 } else {
                     mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_SILENT);
                 }
+                mGestureWakeLock.release();
                 break;
             /*case KEY_MODE_ALARMS_ONLY:
                 if (DEBUG) Log.i(TAG, "KEY_MODE_ALARMS_ONLY " + Global.ZEN_MODE_ALARMS);
@@ -230,6 +236,7 @@ public class KeyHandler implements DeviceKeyHandler {
                 } else {
                     mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_VIBRATE);
                 }
+                mGestureWakeLock.release();
                 break;
             case KEY_MODE_NONE:
                 if (DEBUG) Log.i(TAG, "KEY_MODE_NONE");
@@ -239,6 +246,7 @@ public class KeyHandler implements DeviceKeyHandler {
                 } else {
                     mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_NORMAL);
                 }
+                mGestureWakeLock.release();
                 break;
             }
         }
@@ -250,12 +258,6 @@ public class KeyHandler implements DeviceKeyHandler {
             return false;
         }
 
-        if (mButtonDisabled) {
-            if (DEBUG) Log.i(TAG, "scanCode=" + event.getScanCode());
-            if (ArrayUtils.contains(sDisabledButtons, event.getScanCode())) {
-                return true;
-            }
-        }
         boolean isKeySupported = ArrayUtils.contains(sHandledGestures, event.getScanCode());
         if (isKeySupported && !mEventHandler.hasMessages(GESTURE_REQUEST)) {
             if (DEBUG) Log.i(TAG, "scanCode=" + event.getScanCode());
@@ -272,11 +274,6 @@ public class KeyHandler implements DeviceKeyHandler {
 
     @Override
     public boolean isDisabledKeyEvent(KeyEvent event) {
-        if (mButtonDisabled) {
-            if (ArrayUtils.contains(sDisabledButtons, event.getScanCode())) {
-                return true;
-            }
-        }
         return false;
     }
 
@@ -290,6 +287,10 @@ public class KeyHandler implements DeviceKeyHandler {
         mButtonDisabled = Settings.System.getInt(
                 context.getContentResolver(), Settings.System.HARDWARE_KEYS_DISABLE, 0) == 1;
         if (DEBUG) Log.i(TAG, "setButtonDisable=" + mButtonDisabled);
+        if(mButtonDisabled)
+            Utils.writeValue(KEY_CONTROL_PATH, "1");
+        else
+            Utils.writeValue(KEY_CONTROL_PATH, "0");
     }
 
     @Override
