@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2015 The OmniROM Project
+* Copyright (C) 2016 The OmniROM Project
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,12 +19,18 @@ package org.omnirom.device;
 
 import android.app.ActivityManagerNative;
 import android.app.NotificationManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.ContentObserver;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.media.IAudioService;
 import android.media.AudioManager;
 import android.media.session.MediaSessionLegacyHelper;
@@ -119,6 +125,21 @@ public class KeyHandler implements DeviceKeyHandler {
     private CameraManager mCameraManager;
     private String mRearCameraId;
     private boolean mTorchEnabled;
+    private SensorManager mSensorManager;
+    private Sensor mSensor;
+    private boolean mProxyIsNear;
+
+    private SensorEventListener mProximitySensor = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            mProxyIsNear = event.values[0] < mSensor.getMaximumRange();
+            if (DEBUG) Log.d(TAG, "mProxyIsNear = " + mProxyIsNear);
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        }
+    };
 
     private class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
@@ -158,6 +179,17 @@ public class KeyHandler implements DeviceKeyHandler {
         }
     }
 
+    private BroadcastReceiver mScreenStateReceiver = new BroadcastReceiver() {
+         @Override
+         public void onReceive(Context context, Intent intent) {
+             if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
+                 onDisplayOn();
+             } else if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
+                 onDisplayOff();
+             }
+         }
+    };
+ 
     public KeyHandler(Context context) {
         mContext = context;
         mEventHandler = new EventHandler();
@@ -170,6 +202,12 @@ public class KeyHandler implements DeviceKeyHandler {
         mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         mCameraManager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
         mCameraManager.registerTorchCallback(new MyTorchCallback(), mEventHandler);
+        mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
+        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+ 
+        IntentFilter screenStateFilter = new IntentFilter(Intent.ACTION_SCREEN_ON);
+        screenStateFilter.addAction(Intent.ACTION_SCREEN_OFF);
+        mContext.registerReceiver(mScreenStateReceiver, screenStateFilter);
     }
 
     private class EventHandler extends Handler {
@@ -254,7 +292,9 @@ public class KeyHandler implements DeviceKeyHandler {
         if (event.getAction() != KeyEvent.ACTION_UP) {
             return false;
         }
-
+        if (mProxyIsNear) {
+            return false;
+        }
         boolean isKeySupported = ArrayUtils.contains(sHandledGestures, event.getScanCode());
         if (isKeySupported) {
             if (DEBUG) Log.i(TAG, "scanCode=" + event.getScanCode());
@@ -296,12 +336,18 @@ public class KeyHandler implements DeviceKeyHandler {
         if (event.getAction() != KeyEvent.ACTION_UP) {
             return false;
         }
+        if (mProxyIsNear) {
+            return false;
+        }
         return event.getScanCode() == GESTURE_CIRCLE_SCANCODE;
     }
 
     @Override
     public boolean isWakeEvent(KeyEvent event){
         if (event.getAction() != KeyEvent.ACTION_UP) {
+            return false;
+        }
+        if (mProxyIsNear) {
             return false;
         }
         return event.getScanCode() == KEY_DOUBLE_TAP;
@@ -390,6 +436,17 @@ public class KeyHandler implements DeviceKeyHandler {
             }
         }
         return mRearCameraId;
+    }
+
+    private void onDisplayOn() {
+        if (DEBUG) Log.d(TAG, "Display on");
+        mSensorManager.unregisterListener(mProximitySensor, mSensor);
+    }
+ 
+    private void onDisplayOff() {
+         if (DEBUG) Log.d(TAG, "Display off");
+         mSensorManager.registerListener(mProximitySensor, mSensor,
+                    SensorManager.SENSOR_DELAY_NORMAL);
     }
 }
 
