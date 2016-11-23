@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78209991_fbfb8741",
+        "filename": "BoardConfig.mk",
+        "patchSetId": 9
+      },
+      "lineNbr": 123,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2016-11-23T10:26:40Z",
+      "side": 1,
+      "message": "TODO remove",
+      "revId": "8f46cda922dabe5b2d60aa70cb1d437b960bf6b0",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    }
+  ]
+}
