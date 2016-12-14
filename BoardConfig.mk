@@ -195,6 +195,9 @@ WITH_DEXPREOPT := false
 # camera hax
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 
+# keymaster
+TARGET_KEYMASTER_WAIT_FOR_QSEE := true
+
 # Recovery:Start
 TARGET_RECOVERY_FSTAB := $(BOARD_PATH)/configs/fstab.qcom
 TW_THEME := portrait_hdpi
