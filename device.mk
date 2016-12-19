@@ -207,6 +207,22 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libstagefrighthw
 
+# QMI
+PRODUCT_PACKAGES += \
+    libjson
+
+# Ramdisk
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    init.qcom.bt.sh \
+    init.qcom.power.rc \
+    init.qcom.rc \
+    init.qcom.sh \
+    init.qcom.usb.rc \
+    init.qcom.usb.sh \
+    init.target.rc \
+    ueventd.qcom.rc
+
 # RIL
 PRODUCT_PACKAGES += \
     librmnetctl \
