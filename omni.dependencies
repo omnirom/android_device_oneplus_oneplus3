@@ -27,7 +27,7 @@
     "remote": "omnirom",
     "repository": "vendor_qcom_opensource_dataservices",
     "target_path": "vendor/qcom/opensource/dataservices",
-    "revision": "android-7.0"
+    "revision": "android-7.1"
   },
   {
     "remote": "omnirom",
@@ -69,7 +69,7 @@
     "remote": "omnirom",
     "repository": "android_vendor_codeaurora_telephony",
     "target_path": "vendor/codeaurora/telephony",
-    "revision": "android-7.0"
+    "revision": "android-7.1"
   },
   {
     "repository": "android_external_ant-wireless_antradio-library",
