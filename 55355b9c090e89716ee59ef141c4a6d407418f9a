@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78209991_b77f5ba4",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 51,
+      "author": {
+        "id": 1001490
+      },
+      "writtenOn": "2017-01-08T21:58:45Z",
+      "side": 0,
+      "message": "Beware, you are killing this.",
+      "range": {
+        "startLine": 46,
+        "startChar": 0,
+        "endLine": 51,
+        "endChar": 26
+      },
+      "revId": "55355b9c090e89716ee59ef141c4a6d407418f9a",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    }
+  ]
+}
