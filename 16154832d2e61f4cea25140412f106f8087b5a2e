@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "78209991_e84e0e3f",
+        "filename": "BoardConfig.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 127,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2017-01-14T15:58:29Z",
+      "side": 1,
+      "message": "noop for us\nonly open source camera hal e.g. https://android.googlesource.com/platform/hardware/qcom/camera/+/refs/heads/nougat-dev/QCamera2/stack/mm-jpeg-interface/Android.mk",
+      "revId": "16154832d2e61f4cea25140412f106f8087b5a2e",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "78209991_08426a13",
+        "filename": "BoardConfig.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 128,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2017-01-14T15:58:29Z",
+      "side": 1,
+      "message": "IMHO noop",
+      "revId": "16154832d2e61f4cea25140412f106f8087b5a2e",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "78209991_2845261c",
+        "filename": "BoardConfig.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 129,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2017-01-14T15:58:29Z",
+      "side": 1,
+      "message": "ok",
+      "revId": "16154832d2e61f4cea25140412f106f8087b5a2e",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    }
+  ]
+}
