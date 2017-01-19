@@ -29,6 +29,10 @@ audio_hal.period_size=160
 bt.max.hfpclient.connections=1
 qcom.bluetooth.soc=rome
 
+# HAX - remove ASAP
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true
+
 # Display power reduction (FOSS)
 ro.qcom.dpps.sensortype=3
 ro.qualcomm.display.paneltype=1
