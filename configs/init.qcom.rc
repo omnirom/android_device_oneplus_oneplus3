@@ -476,7 +476,7 @@ service dpmd /system/bin/dpmd
     group system readproc
     writepid /dev/cpuset/system-background/tasks
 
-service irsc_util /system/bin/irsc_util /system/etc/sec_config
+service irsc_util /system/bin/irsc_util "/etc/sec_config"
     class core
     user root
     oneshot
@@ -742,36 +742,6 @@ on property:netd.fstman.start=true
 on property:netd.fstman.start=false
     stop fstman
 
-service dhcpcd_wlan0 /system/bin/dhcpcd -ABKLG
-    class late_start
-    disabled
-    oneshot
-
-service dhcpcd_bond0 /system/bin/dhcpcd -ABKLG
-    class late_start
-    disabled
-    oneshot
-
-service dhcpcd_p2p /system/bin/dhcpcd -ABKLG
-    class late_start
-    disabled
-    oneshot
-
-service iprenew_wlan0 /system/bin/dhcpcd -n
-    class late_start
-    disabled
-    oneshot
-
-service iprenew_bond0 /system/bin/dhcpcd -n
-    class late_start
-    disabled
-    oneshot
-
-service iprenew_p2p /system/bin/dhcpcd -n
-    class late_start
-    disabled
-    oneshot
-
 service ptt_socket_app /system/bin/ptt_socket_app -d
     class main
     user root
@@ -808,40 +778,10 @@ service cnss-daemon /system/bin/cnss-daemon -n -l
 on property:sys.shutdown.requested=*
     stop cnss-daemon
 
-service dhcpcd_bt-pan /system/bin/dhcpcd -BKLG
-    class late_start
-    disabled
-    oneshot
-
-service iprenew_bt-pan /system/bin/dhcpcd -n
-    class late_start
-    disabled
-    oneshot
-
-service dhcpcd_bnep0 /system/bin/dhcpcd -BKLG
-    disabled
-    oneshot
-
-service dhcpcd_bnep1 /system/bin/dhcpcd -BKLG
-    disabled
-    oneshot
-
-service dhcpcd_bnep2 /system/bin/dhcpcd -BKLG
-    disabled
-    oneshot
-
-service dhcpcd_bnep3 /system/bin/dhcpcd -BKLG
-    disabled
-    oneshot
-
-service dhcpcd_bnep4 /system/bin/dhcpcd -BKLG
-    disabled
-    oneshot
-
 service loc_launcher /system/bin/loc_launcher
     #loc_launcher will start as root and set its uid to gps
     class late_start
-    group gps inet net_raw qcom_diag net_admin wifi
+    group gps inet qcom_diag wifi
     writepid /dev/cpuset/system-background/tasks
 
 service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
@@ -944,21 +884,12 @@ service battery_monitor /system/bin/battery_monitor
     group system
     disabled
 
-service ril-daemon /system/bin/rild
-    class main
-    socket rild stream 660 root radio
-    socket sap_uim_socket1 stream 660 bluetooth bluetooth
-    socket rild-debug stream 660 radio system
-    user root
-    group radio cache inet misc audio sdcard_r sdcard_rw qcom_diag diag log net_raw wakelock
-
 service ril-daemon2 /system/bin/rild -c 2
     class main
     socket rild2 stream 660 root radio
     socket rild-debug2 stream 660 radio system
     user root
-#VENDOR_EDIT chenzhongping add net_raw group for rild
-    group radio cache inet misc audio sdcard_r sdcard_rw qcom_diag diag log net_raw wakelock
+    group radio cache inet misc audio log readproc wakelock qcom_diag
 
 service usb_uicc_enable /system/bin/sh /system/etc/init.qcom.uicc.sh
     class late_start
