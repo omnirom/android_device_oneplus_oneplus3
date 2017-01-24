@@ -197,7 +197,7 @@ BOARD_SEPOLICY_DIRS += $(BOARD_PATH)/sepolicy
 BOARD_SECCOMP_POLICY += $(BOARD_PATH)/seccomp
 
 # camera hax
-TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+TARGET_HAS_LEGACY_CAMERA_HAL1 := false
 
 # Recovery:Start
 TARGET_RECOVERY_FSTAB := $(BOARD_PATH)/configs/fstab.qcom
