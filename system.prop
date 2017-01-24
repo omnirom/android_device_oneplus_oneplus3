@@ -137,5 +137,5 @@ ro.build.selinux=1
 # ZOMG HAX!! - remove when we have something that works
 camera.hal1.packagelist=com.skype.raider,com.whatsapp,com.tencent.mm
 persist.camera.HAL3.enabled=1
-media.stagefright.legacyencoder=true
-media.stagefright.less-secure=true
+#media.stagefright.legacyencoder=true
+#media.stagefright.less-secure=true
