@@ -1342,3 +1342,4 @@ service ifaadaemon /system/bin/ifaadaemon
     user system
     group system
     writepid /dev/cpuset/system-background/tasks
+
