@@ -31,8 +31,11 @@ public class SRGBModeSwitch implements OnPreferenceChangeListener {
         return Utils.fileWritable(FILE);
     }
 
-    public static boolean isCurrentlyEnabled(Context context) {
-        return Utils.getFileValueAsBoolean(FILE, false);
+    public static boolean syncWithCurrentValue(Context context) {
+        boolean value = Utils.getFileValueAsBoolean(FILE, false);
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPrefs.edit().putBoolean(DeviceSettings.KEY_SRGB_SWITCH, value).commit();
+        return value;
     }
 
     public static boolean isEnabled(Context context) {
