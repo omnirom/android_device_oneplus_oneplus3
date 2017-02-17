@@ -17,11 +17,13 @@
 */
 package org.omnirom.device;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 public class TorchGestureSwitch implements OnPreferenceChangeListener {
 
@@ -31,8 +33,11 @@ public class TorchGestureSwitch implements OnPreferenceChangeListener {
         return Utils.fileWritable(FILE);
     }
 
-    public static boolean isCurrentlyEnabled(Context context) {
-        return Utils.getFileValueAsBoolean(FILE, false);
+    public static boolean syncWithCurrentValue(Context context) {
+        boolean value = Utils.getFileValueAsBoolean(FILE, false);
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPrefs.edit().putBoolean(DeviceSettings.KEY_TORCH_SWITCH, value).commit();
+        return value;
     }
 
     public static boolean isEnabled(Context context) {

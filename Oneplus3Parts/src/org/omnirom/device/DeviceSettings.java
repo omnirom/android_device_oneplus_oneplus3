@@ -62,22 +62,20 @@ public class DeviceSettings extends PreferenceActivity implements
 
         mTorchSwitch = (TwoStatePreference) findPreference(KEY_TORCH_SWITCH);
         mTorchSwitch.setEnabled(TorchGestureSwitch.isSupported());
-        mTorchSwitch.setChecked(TorchGestureSwitch.isCurrentlyEnabled(this));
+        mTorchSwitch.setChecked(TorchGestureSwitch.syncWithCurrentValue(this));
         mTorchSwitch.setOnPreferenceChangeListener(new TorchGestureSwitch());
 
         mCameraSwitch = (TwoStatePreference) findPreference(KEY_CAMERA_SWITCH);
         mCameraSwitch.setEnabled(CameraGestureSwitch.isSupported());
-        mCameraSwitch.setChecked(CameraGestureSwitch.isCurrentlyEnabled(this));
+        mCameraSwitch.setChecked(CameraGestureSwitch.syncWithCurrentValue(this));
         mCameraSwitch.setOnPreferenceChangeListener(new CameraGestureSwitch());
 
         mVibratorStrength = (VibratorStrengthPreference) findPreference(KEY_VIBSTRENGTH);
-        if (mVibratorStrength != null) {
-            mVibratorStrength.setEnabled(VibratorStrengthPreference.isSupported());
-        }
+        mVibratorStrength.setEnabled(VibratorStrengthPreference.isSupported());
 
         mMusicSwitch = (TwoStatePreference) findPreference(KEY_MUSIC_SWITCH);
         mMusicSwitch.setEnabled(MusicGestureSwitch.isSupported());
-        mMusicSwitch.setChecked(MusicGestureSwitch.isCurrentlyEnabled(this));
+        mMusicSwitch.setChecked(MusicGestureSwitch.syncWithCurrentValue(this));
         mMusicSwitch.setOnPreferenceChangeListener(new MusicGestureSwitch());
 
         mSliderMode = (ListPreference) findPreference(KEY_SLIDER_MODE);
@@ -94,17 +92,17 @@ public class DeviceSettings extends PreferenceActivity implements
 
         mSRGBModeSwitch = (TwoStatePreference) findPreference(KEY_SRGB_SWITCH);
         mSRGBModeSwitch.setEnabled(SRGBModeSwitch.isSupported());
-        mSRGBModeSwitch.setChecked(SRGBModeSwitch.isCurrentlyEnabled(this));
+        mSRGBModeSwitch.setChecked(SRGBModeSwitch.syncWithCurrentValue(this));
         mSRGBModeSwitch.setOnPreferenceChangeListener(new SRGBModeSwitch());
 
         mHBMModeSwitch = (TwoStatePreference) findPreference(KEY_HBM_SWITCH);
         mHBMModeSwitch.setEnabled(HBMModeSwitch.isSupported());
-        mHBMModeSwitch.setChecked(HBMModeSwitch.isCurrentlyEnabled(this));
+        mHBMModeSwitch.setChecked(HBMModeSwitch.syncWithCurrentValue(this));
         mHBMModeSwitch.setOnPreferenceChangeListener(new HBMModeSwitch());
 
         mProxiSwitch = (TwoStatePreference) findPreference(KEY_PROXI_SWITCH);
         mProxiSwitch.setChecked(Settings.System.getInt(getContentResolver(),
-                Settings.System.DEVICE_PROXI_CHECK_ENABLED, 1) != 0);
+                    Settings.System.DEVICE_PROXI_CHECK_ENABLED, 1) != 0);
     }
 
     @Override
