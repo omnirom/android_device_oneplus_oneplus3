@@ -472,7 +472,7 @@ on post-fs-data
     chmod 0660 /dev/dash
     restorecon  /dev/dash
 
-    setprop persist.camera.HAL3.enabled 1
+    setprop persist.camera.HAL3.enabled 0
 
 # start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
