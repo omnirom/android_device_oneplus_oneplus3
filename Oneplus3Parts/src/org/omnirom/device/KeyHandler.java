@@ -76,7 +76,6 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final int GESTURE_II_SCANCODE = 251;
     private static final int GESTURE_LEFT_V_SCANCODE = 253;
     private static final int GESTURE_RIGHT_V_SCANCODE = 254;
-    private static final int KEY_DOUBLE_TAP = 143;
     private static final int KEY_HOME = 102;
     private static final int KEY_BACK = 158;
     private static final int KEY_RECENTS = 580;
@@ -87,7 +86,6 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final int[] sSupportedGestures = new int[]{
         GESTURE_CIRCLE_SCANCODE,
         GESTURE_V_SCANCODE,
-        KEY_DOUBLE_TAP,
         GESTURE_II_SCANCODE,
         GESTURE_LEFT_V_SCANCODE,
         GESTURE_RIGHT_V_SCANCODE,
@@ -109,7 +107,6 @@ public class KeyHandler implements DeviceKeyHandler {
     private static final int[] sProxiCheckedGestures = new int[]{
         GESTURE_CIRCLE_SCANCODE,
         GESTURE_V_SCANCODE,
-        KEY_DOUBLE_TAP,
         GESTURE_II_SCANCODE,
         GESTURE_LEFT_V_SCANCODE,
         GESTURE_RIGHT_V_SCANCODE,
@@ -263,21 +260,6 @@ public class KeyHandler implements DeviceKeyHandler {
                 dispatchMediaKeyWithWakeLockToAudioService(KeyEvent.KEYCODE_MEDIA_NEXT);
             }
             break;
-        case KEY_SLIDER_TOP:
-            if (DEBUG) Log.i(TAG, "KEY_SLIDER_TOP");
-            mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
-            doHandleSliderAction(0);
-            break;
-        case KEY_SLIDER_CENTER:
-            if (DEBUG) Log.i(TAG, "KEY_SLIDER_CENTER");
-            mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
-            doHandleSliderAction(1);
-            break;
-        case KEY_SLIDER_BOTTOM:
-            if (DEBUG) Log.i(TAG, "KEY_SLIDER_BOTTOM");
-            mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
-            doHandleSliderAction(2);
-            break;
         }
     }
 
@@ -290,6 +272,21 @@ public class KeyHandler implements DeviceKeyHandler {
         boolean isKeySupported = ArrayUtils.contains(sHandledGestures, event.getScanCode());
         if (isKeySupported) {
             if (DEBUG) Log.i(TAG, "scanCode=" + event.getScanCode());
+            switch(event.getScanCode()) {
+                case KEY_SLIDER_TOP:
+                    if (DEBUG) Log.i(TAG, "KEY_SLIDER_TOP");
+                    doHandleSliderAction(0);
+                    return true;
+                case KEY_SLIDER_CENTER:
+                    if (DEBUG) Log.i(TAG, "KEY_SLIDER_CENTER");
+                    doHandleSliderAction(1);
+                    return true;
+                case KEY_SLIDER_BOTTOM:
+                    if (DEBUG) Log.i(TAG, "KEY_SLIDER_BOTTOM");
+                    doHandleSliderAction(2);
+                    return true;
+            }
+
             Message msg = getMessageForKeyEvent(event);
             mEventHandler.removeMessages(GESTURE_REQUEST);
             mEventHandler.sendMessage(msg);
@@ -340,10 +337,7 @@ public class KeyHandler implements DeviceKeyHandler {
 
     @Override
     public boolean isWakeEvent(KeyEvent event){
-        if (event.getAction() != KeyEvent.ACTION_UP) {
-            return false;
-        }
-        return event.getScanCode() == KEY_DOUBLE_TAP;
+        return false;
     }
 
     private IAudioService getAudioService() {
@@ -435,24 +429,22 @@ public class KeyHandler implements DeviceKeyHandler {
 
     private void doHandleSliderAction(int position) {
         int action = getSliderAction(position);
+        int ringerMode = mAudioManager.getRingerModeInternal();
         if ( action == 0) {
-            mNoMan.setZenMode(Global.ZEN_MODE_OFF, null, TAG);
+            mNoMan.setZenMode(Global.ZEN_MODE_OFF_ONLY, null, TAG);
             mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_NORMAL);
         } else if (action == 1) {
-            mNoMan.setZenMode(Global.ZEN_MODE_OFF, null, TAG);
+            mNoMan.setZenMode(Global.ZEN_MODE_OFF_ONLY, null, TAG);
             mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_VIBRATE);
         } else if (action == 2) {
             mNoMan.setZenMode(Global.ZEN_MODE_OFF_ONLY, null, TAG);
             mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_SILENT);
         } else if (action == 3) {
             mNoMan.setZenMode(Global.ZEN_MODE_IMPORTANT_INTERRUPTIONS, null, TAG);
-            mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_NORMAL);
         } else if (action == 4) {
             mNoMan.setZenMode(Global.ZEN_MODE_ALARMS, null, TAG);
-            mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_NORMAL);
         } else if (action == 5) {
             mNoMan.setZenMode(Global.ZEN_MODE_NO_INTERRUPTIONS, null, TAG);
-            mAudioManager.setRingerModeInternal(AudioManager.RINGER_MODE_NORMAL);
         }
     }
 }
