@@ -20,6 +20,7 @@ package org.omnirom.device;
 import android.app.ActivityManagerNative;
 import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -246,8 +247,20 @@ public class KeyHandler implements DeviceKeyHandler {
             break;
         case GESTURE_II_SCANCODE:
             if (DEBUG) Log.i(TAG, "GESTURE_II_SCANCODE");
+            
+            String value = Settings.System.getStringForUser(mContext.getContentResolver(),
+                    Settings.System.DEVICE_GESTURE_MAPPING, UserHandle.USER_CURRENT);
+            if (value != null) {
+                ComponentName componentName = ComponentName.unflattenFromString(value);
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                        | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                intent.setComponent(componentName);
+            }
+            
             mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
-            dispatchMediaKeyWithWakeLockToAudioService(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
+            //dispatchMediaKeyWithWakeLockToAudioService(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
             break;
         case GESTURE_LEFT_V_SCANCODE:
             if (isMusicActive()) {
@@ -344,6 +357,29 @@ public class KeyHandler implements DeviceKeyHandler {
             return false;
         }
         return event.getScanCode() == KEY_DOUBLE_TAP;
+    }
+
+    @Override
+    public Intent isActivityLaunchEvent(KeyEvent event) {
+        if (event.getAction() != KeyEvent.ACTION_UP) {
+            return null;
+        }
+        if (event.getScanCode() == GESTURE_II_SCANCODE) {
+            if (DEBUG) Log.i(TAG, "GESTURE_II_SCANCODE");
+            
+            String value = Settings.System.getStringForUser(mContext.getContentResolver(),
+                    Settings.System.DEVICE_GESTURE_MAPPING, UserHandle.USER_CURRENT);
+            if (value != null) {
+                ComponentName componentName = ComponentName.unflattenFromString(value);
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_LAUNCHER);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+                        | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+                intent.setComponent(componentName);
+                return intent;
+            }
+        }
+        return null;
     }
 
     private IAudioService getAudioService() {

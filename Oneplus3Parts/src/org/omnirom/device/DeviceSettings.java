@@ -17,6 +17,8 @@
 */
 package org.omnirom.device;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.res.Resources;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +31,10 @@ import android.preference.TwoStatePreference;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 import android.util.Log;
 
 public class DeviceSettings extends PreferenceActivity implements
@@ -45,6 +51,7 @@ public class DeviceSettings extends PreferenceActivity implements
     public static final String KEY_SRGB_SWITCH = "srgb";
     public static final String KEY_HBM_SWITCH = "hbm";
     public static final String KEY_PROXI_SWITCH = "proxi";
+    private static final String KEY_MUSIC_GESTURE = "music_gesture";
 
     private TwoStatePreference mTorchSwitch;
     private TwoStatePreference mCameraSwitch;
@@ -57,6 +64,7 @@ public class DeviceSettings extends PreferenceActivity implements
     private TwoStatePreference mSRGBModeSwitch;
     private TwoStatePreference mHBMModeSwitch;
     private TwoStatePreference mProxiSwitch;
+    private AppSelectListPreference mMusicGesture;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -123,6 +131,12 @@ public class DeviceSettings extends PreferenceActivity implements
         mProxiSwitch = (TwoStatePreference) findPreference(KEY_PROXI_SWITCH);
         mProxiSwitch.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.DEVICE_PROXI_CHECK_ENABLED, 1) != 0);
+
+        mMusicGesture = (AppSelectListPreference) findPreference(KEY_MUSIC_GESTURE);
+        String value = Settings.System.getString(getContentResolver(),
+                Settings.System.DEVICE_GESTURE_MAPPING);
+        mMusicGesture.setValue(value);
+        mMusicGesture.setOnPreferenceChangeListener(this);
     }
 
     @Override
@@ -143,8 +157,7 @@ public class DeviceSettings extends PreferenceActivity implements
             Settings.System.putInt(getContentResolver(),
                     Settings.System.BUTTON_SWAP_BACK_RECENTS, mSwapBackRecents.isChecked() ? 1 : 0);
             return true;
-        }
-        if (preference == mProxiSwitch) {
+        } else if (preference == mProxiSwitch) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.DEVICE_PROXI_CHECK_ENABLED, mProxiSwitch.isChecked() ? 1 : 0);
             return true;
@@ -160,20 +173,22 @@ public class DeviceSettings extends PreferenceActivity implements
             setSliderAction(0, sliderMode);
             int valueIndex = mSliderModeTop.findIndexOfValue(value);
             mSliderModeTop.setSummary(mSliderModeTop.getEntries()[valueIndex]);
-        }
-        if (preference == mSliderModeCenter) {
+        } else if (preference == mSliderModeCenter) {
             String value = (String) newValue;
             int sliderMode = Integer.valueOf(value);
             setSliderAction(1, sliderMode);
             int valueIndex = mSliderModeCenter.findIndexOfValue(value);
             mSliderModeCenter.setSummary(mSliderModeCenter.getEntries()[valueIndex]);
-        }
-        if (preference == mSliderModeBottom) {
+        } else if (preference == mSliderModeBottom) {
             String value = (String) newValue;
             int sliderMode = Integer.valueOf(value);
             setSliderAction(2, sliderMode);
             int valueIndex = mSliderModeBottom.findIndexOfValue(value);
             mSliderModeBottom.setSummary(mSliderModeBottom.getEntries()[valueIndex]);
+        } else if (preference == mMusicGesture) {
+            String value = (String) newValue;
+            Settings.System.putString(getContentResolver(),
+                    Settings.System.DEVICE_GESTURE_MAPPING, value);
         }
         return true;
     }
