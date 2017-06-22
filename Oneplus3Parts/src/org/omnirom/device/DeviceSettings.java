@@ -17,6 +17,8 @@
 */
 package org.omnirom.device;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.res.Resources;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +31,10 @@ import android.preference.TwoStatePreference;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 import android.util.Log;
 
 public class DeviceSettings extends PreferenceActivity implements
@@ -45,6 +51,8 @@ public class DeviceSettings extends PreferenceActivity implements
     public static final String KEY_SRGB_SWITCH = "srgb";
     public static final String KEY_HBM_SWITCH = "hbm";
     public static final String KEY_PROXI_SWITCH = "proxi";
+    private static final String KEY_MUSIC_APP = "music_gesture_app";
+    public static final String KEY_MUSIC_CONTROL = "music_gesture_control";
 
     private TwoStatePreference mTorchSwitch;
     private TwoStatePreference mCameraSwitch;
@@ -57,6 +65,8 @@ public class DeviceSettings extends PreferenceActivity implements
     private TwoStatePreference mSRGBModeSwitch;
     private TwoStatePreference mHBMModeSwitch;
     private TwoStatePreference mProxiSwitch;
+    private AppSelectListPreference mMusicApp;
+    private TwoStatePreference mMusicControl;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -123,6 +133,30 @@ public class DeviceSettings extends PreferenceActivity implements
         mProxiSwitch = (TwoStatePreference) findPreference(KEY_PROXI_SWITCH);
         mProxiSwitch.setChecked(Settings.System.getInt(getContentResolver(),
                 Settings.System.DEVICE_PROXI_CHECK_ENABLED, 1) != 0);
+
+        mMusicApp = (AppSelectListPreference) findPreference(KEY_MUSIC_APP);
+        mMusicApp.setOnPreferenceChangeListener(this);
+
+        mMusicControl = (TwoStatePreference) findPreference(KEY_MUSIC_CONTROL);
+        mMusicControl.setOnPreferenceChangeListener(this);
+
+        String value = Settings.System.getString(getContentResolver(),
+                Settings.System.DEVICE_GESTURE_MAPPING_0);
+        boolean defaultValue = false;
+        if (TextUtils.isEmpty(value) || value.equals("default#")) {
+            defaultValue = true;
+            value = "";
+        } else if (value.startsWith("default#")) {
+            defaultValue = true;
+            value = value.substring("default#".length(), value.length());
+        }
+        if (defaultValue) {
+            mMusicApp.setEnabled(false);
+            mMusicControl.setChecked(true);
+        } else {
+            mMusicApp.setValue(value);
+            mMusicControl.setChecked(false);
+        }
     }
 
     @Override
@@ -143,8 +177,7 @@ public class DeviceSettings extends PreferenceActivity implements
             Settings.System.putInt(getContentResolver(),
                     Settings.System.BUTTON_SWAP_BACK_RECENTS, mSwapBackRecents.isChecked() ? 1 : 0);
             return true;
-        }
-        if (preference == mProxiSwitch) {
+        } else if (preference == mProxiSwitch) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.DEVICE_PROXI_CHECK_ENABLED, mProxiSwitch.isChecked() ? 1 : 0);
             return true;
@@ -160,20 +193,44 @@ public class DeviceSettings extends PreferenceActivity implements
             setSliderAction(0, sliderMode);
             int valueIndex = mSliderModeTop.findIndexOfValue(value);
             mSliderModeTop.setSummary(mSliderModeTop.getEntries()[valueIndex]);
-        }
-        if (preference == mSliderModeCenter) {
+        } else if (preference == mSliderModeCenter) {
             String value = (String) newValue;
             int sliderMode = Integer.valueOf(value);
             setSliderAction(1, sliderMode);
             int valueIndex = mSliderModeCenter.findIndexOfValue(value);
             mSliderModeCenter.setSummary(mSliderModeCenter.getEntries()[valueIndex]);
-        }
-        if (preference == mSliderModeBottom) {
+        } else if (preference == mSliderModeBottom) {
             String value = (String) newValue;
             int sliderMode = Integer.valueOf(value);
             setSliderAction(2, sliderMode);
             int valueIndex = mSliderModeBottom.findIndexOfValue(value);
             mSliderModeBottom.setSummary(mSliderModeBottom.getEntries()[valueIndex]);
+        } else if (preference == mMusicApp) {
+            String value = (String) newValue;
+            Settings.System.putString(getContentResolver(),
+                    Settings.System.DEVICE_GESTURE_MAPPING_0, value);
+        } else if (preference == mMusicControl) {
+            Boolean value = (Boolean) newValue;
+            String oldValue = Settings.System.getString(getContentResolver(),
+                    Settings.System.DEVICE_GESTURE_MAPPING_0);
+            boolean defaultValue = false;
+            if (TextUtils.isEmpty(oldValue) || oldValue.equals("default#")) {
+                defaultValue = true;
+                oldValue = "";
+            } else if (oldValue.startsWith("default#")) {
+                defaultValue = true;
+                oldValue = oldValue.substring("default#".length(), oldValue.length());
+            }
+            if (value) {
+                mMusicApp.setEnabled(false);
+                Settings.System.putString(getContentResolver(),
+                        Settings.System.DEVICE_GESTURE_MAPPING_0, "default#" + oldValue);
+            } else {
+                mMusicApp.setEnabled(true);
+                mMusicApp.setValue(oldValue);
+                Settings.System.putString(getContentResolver(),
+                        Settings.System.DEVICE_GESTURE_MAPPING_0, oldValue);
+            }
         }
         return true;
     }
