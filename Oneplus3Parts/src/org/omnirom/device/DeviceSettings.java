@@ -49,6 +49,7 @@ public class DeviceSettings extends PreferenceActivity implements
     public static final String KEY_SRGB_SWITCH = "srgb";
     public static final String KEY_HBM_SWITCH = "hbm";
     public static final String KEY_PROXI_SWITCH = "proxi";
+    public static final String KEY_DCI_SWITCH = "dci";
 
     private VibratorStrengthPreference mVibratorStrength;
     private ListPreference mSliderModeTop;
@@ -57,6 +58,7 @@ public class DeviceSettings extends PreferenceActivity implements
     private TwoStatePreference mSwapBackRecents;
     private TwoStatePreference mSRGBModeSwitch;
     private TwoStatePreference mHBMModeSwitch;
+    private TwoStatePreference mDCIModeSwitch;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -104,6 +106,11 @@ public class DeviceSettings extends PreferenceActivity implements
         mHBMModeSwitch.setEnabled(HBMModeSwitch.isSupported());
         mHBMModeSwitch.setChecked(HBMModeSwitch.isCurrentlyEnabled(this));
         mHBMModeSwitch.setOnPreferenceChangeListener(new HBMModeSwitch());
+
+        mDCIModeSwitch = (TwoStatePreference) findPreference(KEY_DCI_SWITCH);
+        mDCIModeSwitch.setEnabled(DCIModeSwitch.isSupported());
+        mDCIModeSwitch.setChecked(DCIModeSwitch.isCurrentlyEnabled(this));
+        mDCIModeSwitch.setOnPreferenceChangeListener(new DCIModeSwitch());
     }
 
     @Override
