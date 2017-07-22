@@ -270,3 +270,8 @@ PRODUCT_PACKAGES += \
 # Sensors
 PRODUCT_PACKAGES += \
     sensors.msm8996
+
+
+# Add matlog 
+PRODUCT_PACKAGES += \
+    MatLog
