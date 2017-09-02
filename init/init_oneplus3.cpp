@@ -30,10 +30,11 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <string>
+#include <android-base/properties.h>
 
 #include "vendor_init.h"
 #include "property_service.h"
-#include "log.h"
+#include "vendor_init.h"
 #include "util.h"
 
 static int read_file2(const char *fname, char *data, int max_size)
@@ -116,7 +117,7 @@ static void import_panel_prop(const std::string& key, const std::string& value, 
 }
 
 void vendor_load_properties() {
-    std::string rf_version = property_get("ro.boot.rf_version");
+    std::string rf_version = android::base::GetProperty("ro.boot.rf_version");
 
     if (rf_version == "11" || rf_version == "31") {
         /* China / North America model */
