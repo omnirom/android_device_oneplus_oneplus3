@@ -173,7 +173,7 @@ public class KeyHandler implements DeviceKeyHandler {
         public void update() {
             setButtonDisable(mContext);
             mUseProxiCheck = Settings.System.getIntForUser(
-                    mContext.getContentResolver(), Settings.System.DEVICE_PROXI_CHECK_ENABLED, 1,
+                    mContext.getContentResolver(), Settings.System.DEVICE_PROXI_CHECK_ENABLED, 0,
                     UserHandle.USER_CURRENT) == 1;
         }
     }
