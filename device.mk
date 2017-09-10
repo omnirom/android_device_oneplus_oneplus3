@@ -133,6 +133,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     fingerprintd
 
+# GPS HAL
+PRODUCT_PACKAGES += \
+    android.hardware.gnss@1.0-impl-qti \
+    android.hardware.gnss@1.0-service-qti
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8996 \
