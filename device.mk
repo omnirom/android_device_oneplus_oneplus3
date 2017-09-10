@@ -181,18 +181,18 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
 # NFC HAL
-PRODUCT_PACKAGES += \
-    vendor.nxp.hardware.nfc@1.0
+#PRODUCT_PACKAGES += \
+#    vendor.nxp.hardware.nfc@1.0
 
 # NFC
-PRODUCT_PACKAGES += \
-    com.android.nfc_extras \
-    com.nxp.nfc.nq \
-    nfc_nci.nqx.default \
-    NQNfcNci \
-    nqnfcee_access.xml \
-    nqnfcse_access.xml \
-    Tag
+#PRODUCT_PACKAGES += \
+#    com.android.nfc_extras \
+#    com.nxp.nfc.nq \
+#    nfc_nci.nqx.default \
+#    NQNfcNci \
+#    nqnfcee_access.xml \
+#    nqnfcse_access.xml \
+#    Tag
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/nfc/libnfc-brcm.conf:system/etc/libnfc-brcm.conf \
