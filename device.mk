@@ -213,6 +213,10 @@ PRODUCT_PACKAGES += \
     libxml2 \
     libprotobuf-cpp-full
 
+# WiFi HAL
+PRODUCT_PACKAGES += \
+    android.hardware.wifi@1.0-service
+
 # Wifi
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
