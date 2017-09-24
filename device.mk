@@ -20,6 +20,7 @@
 # product configuration (apps).
 #
 
+$(call inherit-product, device/oneplus/oneplus3/hidl.mk)
 $(call inherit-product, vendor/oneplus/oneplus3/oneplus3-vendor.mk)
 $(call inherit-product, vendor/omni/config/phone-xxhdpi-4096-dalvik-heap.mk)
 $(call inherit-product, vendor/omni/config/phone-xxhdpi-2048-hwui-memory.mk)
@@ -180,18 +181,15 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
-# NFC HAL
-PRODUCT_PACKAGES += \
-    vendor.nxp.hardware.nfc@1.0-impl \
-    android.hardware.nfc@1.0-impl \
-    vendor.nxp.hardware.nfc@1.0-service
-
 # NFC
 PRODUCT_PACKAGES += \
     com.android.nfc_extras \
     com.nxp.nfc.nq \
     nfc_nci.nqx.default \
+    libnqnfc-nci \
+    libnqnfc_nci_jnia \
     NQNfcNci \
+    nqnfcinfo \
     nqnfcee_access.xml \
     nqnfcse_access.xml \
     Tag
@@ -218,10 +216,6 @@ PRODUCT_PACKAGES += \
     librmnetctl \
     libxml2 \
     libprotobuf-cpp-full
-
-# WiFi HAL
-PRODUCT_PACKAGES += \
-    android.hardware.wifi@1.0-service
 
 # Wifi
 PRODUCT_COPY_FILES += \
@@ -250,9 +244,6 @@ PRODUCT_PACKAGES += \
 # power
 PRODUCT_PACKAGES += \
     power.msm8996
-
-#PRODUCT_COPY_FILES += \
-#    $(LOCAL_PATH)/configs/power_profiles.xml:system/etc/power_profiles.xml
 
 PRODUCT_PACKAGES += \
     Oneplus3Parts
