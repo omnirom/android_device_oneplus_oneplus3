@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "16f38a29_acdc62fd",
+        "filename": "omni.dependencies",
+        "patchSetId": 2
+      },
+      "lineNbr": 14,
+      "author": {
+        "id": 1001016
+      },
+      "writtenOn": "2017-09-25T10:41:13Z",
+      "side": 1,
+      "message": "DERP :)",
+      "revId": "b7218f7804a9576abdf041173b7f5e226e5dd048",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    }
+  ]
+}
