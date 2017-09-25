@@ -23,7 +23,7 @@
 BOARD_PATH := device/oneplus/oneplus3
 
 TARGET_NO_BOOTLOADER := true
-TARGET_OTA_ASSERT_DEVICE := OnePlus3,oneplus3,OnePlus3T,oneplus3t
+TARGET_OTA_ASSERT_DEVICE := none
 TARGET_BOOTLOADER_BOARD_NAME := msm8996
 
 # Platform
@@ -48,7 +48,7 @@ TARGET_USES_64_BIT_BINDER := true
 
 ENABLE_CPUSETS := true
 
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.selinux=enforcing user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff androidboot.bootdevice=624000.ufshc
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.selinux=permissive user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff androidboot.bootdevice=624000.ufshc
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x02000000
@@ -77,7 +77,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
 # RIL
-BOARD_PROVIDES_LIBRIL := true
+#BOARD_PROVIDES_LIBRIL := true
 
 # Display
 BOARD_USES_ADRENO := true
@@ -124,8 +124,8 @@ BOARD_USES_ALSA_AUDIO := true
 BOARD_SUPPORTS_SOUND_TRIGGER := false
 #USE_CUSTOM_AUDIO_POLICY := 1
 TARGET_USES_QCOM_MM_AUDIO := true
-SNDRV_COMPRESS_SET_NEXT_TRACK_PARAM := true
-AUDIO_FEATURE_ENABLED_PLAYBACK_ULL := false
+# TODO
+#AUDIO_FEATURE_ENABLED_PLAYBACK_ULL := false
 
 # Camera
 USE_CAMERA_STUB := true
@@ -179,21 +179,21 @@ BOARD_NFC_CHIPSET := pn548
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
 
-# Crypto
-TARGET_HW_DISK_ENCRYPTION := true
-TARGET_CRYPTFS_HW_PATH := $(BOARD_PATH)/cryptfs_hw
+# TODO Crypto
+#TARGET_HW_DISK_ENCRYPTION := true
+#TARGET_CRYPTFS_HW_PATH := $(BOARD_PATH)/cryptfs_hw
 
-# Increase coldboot timeout
-TARGET_INCREASES_COLDBOOT_TIMEOUT := true
+# TODO Increase coldboot timeout
+#TARGET_INCREASES_COLDBOOT_TIMEOUT := true
 
 # CNE and DPM
-TARGET_LDPRELOAD := libNimsWrap.so
+#TARGET_LDPRELOAD := libNimsWrap.so
 BOARD_USES_QCNE := true
 
 # selinux
 include device/qcom/sepolicy/sepolicy.mk
 
-BOARD_SEPOLICY_DIRS += $(BOARD_PATH)/sepolicy
+#BOARD_SEPOLICY_DIRS += $(BOARD_PATH)/sepolicy
 
 BOARD_SECCOMP_POLICY += $(BOARD_PATH)/seccomp
 

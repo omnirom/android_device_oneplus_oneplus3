@@ -85,8 +85,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.qcom.usb.rc:root/init.qcom.usb.rc \
     $(LOCAL_PATH)/configs/init.qcom.usb.sh:root/init.qcom.usb.sh \
     $(LOCAL_PATH)/configs/ueventd.qcom.rc:root/ueventd.qcom.rc \
-    $(LOCAL_PATH)/configs/fstab.qcom:root/fstab.qcom \
-    $(LOCAL_PATH)/configs/twrp.fstab:recovery/root/etc/twrp.fstab
+    $(LOCAL_PATH)/configs/init.recovery.qcom.rc:root/init.recovery.qcom.rc \
+    $(LOCAL_PATH)/configs/fstab.qcom:root/fstab.qcom
 
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
@@ -238,8 +238,10 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    SnapdragonCamera \
     libcamera_shim
+
+#PRODUCT_PACKAGES += \
+    SnapdragonCamera \
 
 # power
 PRODUCT_PACKAGES += \
@@ -250,7 +252,7 @@ PRODUCT_PACKAGES += \
 
 # bluetooth
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
+#     $(LOCAL_PATH)/configs/init.qcom.bt.sh:system/etc/init.qcom.bt.sh
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/FOSSConfig.xml:system/etc/FOSSConfig.xml \
