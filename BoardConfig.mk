@@ -191,7 +191,7 @@ TARGET_LDPRELOAD := libNimsWrap.so
 BOARD_USES_QCNE := true
 
 # selinux
-include device/qcom/sepolicy/sepolicy.mk
+#include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += $(BOARD_PATH)/sepolicy
 
