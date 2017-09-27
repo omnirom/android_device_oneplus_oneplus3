@@ -18,8 +18,6 @@ on boot
     # Enable sched boost
     write /proc/sys/kernel/sched_boost 1
 
-    trigger enable-low-power
-
 on enable-low-power
     # Disable thermal bcl hotplug to switch governor
     write /sys/module/msm_thermal/core_control/enabled 0
@@ -125,6 +123,12 @@ on charger
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
     setprop persist.sys.usb.config charging
     start dashd
+
+#on class_start:late_start
+#    trigger enable-low-power
+
+on property:vold.decrypt=trigger_restart_framework
+    trigger enable-low-power
 
 on property:init.svc.recovery=running
     trigger enable-low-power
