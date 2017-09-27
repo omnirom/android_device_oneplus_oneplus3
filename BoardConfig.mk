@@ -76,9 +76,6 @@ TARGET_USES_QCOM_BSP := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
-# RIL
-#BOARD_PROVIDES_LIBRIL := true
-
 # Display
 BOARD_USES_ADRENO := true
 TARGET_QCOM_DISPLAY_VARIANT := caf-msm8996
@@ -193,11 +190,9 @@ include device/qcom/sepolicy/sepolicy.mk
 
 #BOARD_SEPOLICY_DIRS += $(BOARD_PATH)/sepolicy
 
-BOARD_SECCOMP_POLICY += $(BOARD_PATH)/seccomp
+DEVICE_MANIFEST_FILE := $(BOARD_PATH)/configs/manifest.xml
 
-DEVICE_MANIFEST_FILE := device/oneplus/oneplus3/configs/manifest.xml
-
-TARGET_FS_CONFIG_GEN := device/oneplus/oneplus3/configs/config.fs
+TARGET_FS_CONFIG_GEN := $(BOARD_PATH)/configs/config.fs
 
 # for offmode charging
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"

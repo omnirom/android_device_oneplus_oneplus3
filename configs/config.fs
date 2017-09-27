@@ -1,3 +1,5 @@
+[AID_QTI_DIAG]
+value:2901
 
 [system/bin/cnss-daemon]
 mode: 0755
