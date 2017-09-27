@@ -5,9 +5,11 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE_RELATIVE_PATH := hw
+LOCAL_PROPRIETARY_MODULE := true
+
 LOCAL_SHARED_LIBRARIES := liblog libcutils libdl
 LOCAL_SRC_FILES := power.c metadata-parser.c utils.c list.c hint-data.c
-LOCAL_MODULE := power.msm8996
+LOCAL_MODULE := power.$(TARGET_DEVICE)
 
 # Include target-specific files.
 LOCAL_SRC_FILES += power-8996.c

@@ -23,9 +23,11 @@ LOCAL_SRC_FILES := \
 
 LOCAL_SHARED_LIBRARIES := \
     libhardware liblog
-
+    
 LOCAL_MODULE_RELATIVE_PATH := hw
-LOCAL_MODULE := fingerprint.msm8996
+LOCAL_PROPRIETARY_MODULE := true
+
+LOCAL_MODULE := fingerprint.$(TARGET_DEVICE)
 LOCAL_MODULE_TAGS := optional
 
 include $(BUILD_SHARED_LIBRARY)

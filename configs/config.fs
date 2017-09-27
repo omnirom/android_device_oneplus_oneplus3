@@ -1,4 +1,3 @@
-
 [system/bin/cnss-daemon]
 mode: 0755
 user: AID_SYSTEM
