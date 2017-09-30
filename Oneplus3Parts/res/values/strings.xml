@@ -66,4 +66,6 @@
     <string name="category_up_swipe_gesture">Up swipe</string>
     <string name="category_left_swipe_gesture">Left swipe</string>
     <string name="category_right_swipe_gesture">Right swipe</string>
+    <string name="night_mode_title">Night mode</string>
+    <string name="night_mode_summary"></string>
 </resources>
