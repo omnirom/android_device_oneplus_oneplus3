@@ -114,7 +114,9 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     libaudio-resampler \
     libvolumelistener \
-    tinymix \
+    tinymix
+
+PRODUCT_PACKAGES += \
     libqcompostprocbundle \
     libqcomvisualizer \
     libqcomvoiceprocessing
@@ -295,7 +297,3 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/seccomp/mediacodec-seccomp.policy:system/vendor/etc/seccomp_policy/mediacodec.policy \
     $(LOCAL_PATH)/seccomp/mediaextractor-seccomp.policy:system/vendor/etc/seccomp_policy/mediaextractor.policy
 
-# misc
-PRODUCT_PACKAGES += \
-    sh_vendor \
-    mkshrc_vendor
