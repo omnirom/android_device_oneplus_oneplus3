@@ -80,8 +80,8 @@ on boot
 
     # Input boost configuration
     # may be overruled power hal POWER_HINT_INTERACTION
-    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1036800"
-    write /sys/module/cpu_boost/parameters/input_boost_ms 40
+    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1036800 2:1036800"
+    write /sys/module/cpu_boost/parameters/input_boost_ms 50
 
     # Setting b.L scheduler parameters
     write /proc/sys/kernel/sched_boost 0
@@ -128,5 +128,4 @@ on charger
 
 on property:dev.bootcomplete=1
     setprop sys.io.scheduler "cfq"
-    start perfd
-    start iop
+    #start iop
