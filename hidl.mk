@@ -16,12 +16,16 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
     android.hardware.graphics.allocator@2.0-service \
+    android.hardware.graphics.mapper@2.0-impl \
     android.hardware.graphics.composer@2.1-impl \
-    android.hardware.graphics.mapper@2.0-impl
+    android.hardware.graphics.composer@2.1-service \
+    android.hardware.configstore@1.0-service
 
 PRODUCT_PACKAGES += \
     android.hardware.memtrack@1.0-impl \
-    android.hardware.light@2.0-impl
+    android.hardware.memtrack@1.0-service \
+    android.hardware.light@2.0-impl \
+    android.hardware.light@2.0-service
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -35,7 +39,9 @@ PRODUCT_PACKAGES += \
 #Enable AOSP KEYMASTER and GATEKEEPER HIDLs
 PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0-impl \
-    android.hardware.keymaster@3.0-impl
+    android.hardware.gatekeeper@1.0-service \
+    android.hardware.keymaster@3.0-impl \
+    android.hardware.keymaster@3.0-service
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -83,3 +89,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.thermal@1.0-impl \
     android.hardware.thermal@1.0-service
+
+# Netd
+PRODUCT_PACKAGES += \
+    android.system.net.netd@1.0
