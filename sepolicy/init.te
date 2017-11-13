@@ -13,3 +13,5 @@ get_prop(init, vendor_rild_libpath_prop);
 domain_trans(init, rootfs, dashd)
 allow init input_device:chr_file getattr;
 allow init pmsg_device:chr_file open;
+allow init debugfs:dir mounton;
+
