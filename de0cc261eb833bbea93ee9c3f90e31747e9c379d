@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f06fda86_e47a29e0",
+        "filename": "sepolicy/file_contexts",
+        "patchSetId": 3
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2017-11-16T12:45:21Z",
+      "side": 1,
+      "message": "but DONT remove for perfd - we still using old one",
+      "revId": "de0cc261eb833bbea93ee9c3f90e31747e9c379d",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "91aeb45f_5cc7b885",
+        "filename": "sepolicy/file_contexts",
+        "patchSetId": 3
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2017-11-16T12:45:21Z",
+      "side": 1,
+      "message": "you can also delete misc for those three - all are in /data/vendor now",
+      "revId": "de0cc261eb833bbea93ee9c3f90e31747e9c379d",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    }
+  ]
+}
