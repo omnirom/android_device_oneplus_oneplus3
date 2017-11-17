@@ -26,4 +26,7 @@
 /data/system/perfd(/.*)?                                        u:object_r:perfd_data_file:s0
 /data/oemnvitems(/.*)?                                          u:object_r:nv_data_file:s0
 
+# TWRP backward comp
+/data/time(/.*)?                                                u:object_r:time_data_file:s0
+
 /(vendor|system/vendor)/bin/perfd           u:object_r:perfd_exec:s0
