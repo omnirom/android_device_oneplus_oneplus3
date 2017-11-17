@@ -244,8 +244,17 @@ on boot
     chmod 2770 /dev/socket/qmux_gps
 
     mkdir /persist/drm 0770 system system
-
     mkdir /persist/bluetooth 0770 bluetooth bluetooth
+    mkdir /persist/misc 0770 system system
+    mkdir /persist/alarm 0770 system system
+    mkdir /persist/time 0770 system system
+    mkdir /persist/secnvm 0770 system system
+
+    # Create directory used for display
+    mkdir /persist/display 0770 system graphics
+    
+    # Create vpp directory
+    mkdir /persist/vpp 0770 media media
 
     # Create NETMGR daemon socket area
     mkdir /dev/socket/netmgr 0750 radio radio
@@ -323,10 +332,12 @@ on post-fs-data
     mkdir /tombstones/lpass 0771 system system
     mkdir /tombstones/wcnss 0771 system system
     mkdir /tombstones/dsps 0771 system system
+    mkdir /persist/data 0700 system system
     mkdir /persist/data/sfs 0700 system system
     mkdir /persist/data/tz 0700 system system
-    mkdir /persist/qc_senseid 0700 system system
     mkdir /persist/bms 0700 root system
+    mkdir /persist/qti_fp 0700 system system
+
     restorecon_recursive /persist
     mkdir /data/misc/dts 0770 media audio
     mkdir /data/usf 0700 system system
@@ -476,6 +487,8 @@ on post-fs-data
 
     # Create /data/vendor/time folder for time-services
     mkdir /data/vendor/time/ 0700 system system
+    # backward comp
+    symlink /data/vendor/time /data/time
 
     mkdir /data/vendor/audio/ 0770 media audio
 
@@ -488,14 +501,6 @@ on post-fs-data
     # Create FM dir for patchdownloader
     mkdir /data/misc/fm 0770 system system
     chmod 0770 /data/misc/fm
-
-    # RIDL data
-    mkdir /data/misc/SelfHost/ 0710 system shell
-    mkdir /data/misc/SelfHost/QCLogs/ 2750 system shell
-    mkdir /data/misc/SelfHost/QCLogs/temp/ 0700 system shell
-    mkdir /data/misc/SelfHost/storage/ 0700 system shell
-    mkdir /data/misc/SelfHost/Running/ 2750 system shell
-    mkdir /data/misc/SelfHost/socket/ 2770 system system
 
     # Create PERFD deamon related dirs
     setprop ro.min_freq_0 384000
@@ -533,8 +538,6 @@ on post-fs-data
     chmod 0660 /dev/dash
     restorecon  /dev/dash
 
-    setprop persist.camera.HAL3.enabled 1
-
     # set aggressive read ahead for dm-0 and dm-1 during boot up
     write /sys/block/dm-0/queue/read_ahead_kb 2048
     write /sys/block/dm-1/queue/read_ahead_kb 2048
@@ -550,13 +553,6 @@ service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
     user camera
     group camera system inet input graphics
     writepid /dev/cpuset/camera-daemon/tasks
-
-# fingerprint service
-service fingerprintd /system/vendor/bin/fingerprintd
-    class late_start
-    user system
-    group input
-    writepid /dev/cpuset/system-background/tasks
 
 service qfp-daemon /system/vendor/bin/qfp-daemon
     class late_start
@@ -743,15 +739,6 @@ service dashd /sbin/dashd
 
 on property:init.svc.healthd=restarting
     restart dashd
-
-service iop /system/vendor/bin/iop
-    class main
-    user root
-    group root
-    # will be started init init.qcom.power.rc
-    disabled
-    socket iop seqpacket 0666 root system
-    writepid /dev/cpuset/system-background/tasks
 
 service qcomsysd /system/vendor/bin/qcom-system-daemon
     class main
@@ -1220,38 +1207,17 @@ service vendor.msm_irqbalance /system/vendor/bin/msm_irqbalance -f /system/vendo
     # will be started in init.qcom.sh
     disabled
 
-# Coresight early boot service
-service cs-early-boot /system/vendor/bin/sh /persist/coresight/qdss.agent.sh early-boot /system/etc/init.qcom.debug.sh
-    class core
-    user root
-    oneshot
-
-# Coresight post boot servive
-service cs-post-boot /system/vendor/bin/sh /persist/coresight/qdss.agent.sh
-    user root
-    disabled
-    oneshot
-
-on property:sys.boot_completed=1
-    start cs-post-boot
-
-on property:sys.dbg.coresight.enable=1
-    write /persist/coresight/enable 1
-
-on property:sys.dbg.coresight.enable=0
-    write /persist/coresight/enable 0
-
 service qseeproxydaemon /system/vendor/bin/qseeproxydaemon
     class late_start
     user system
     group system
     writepid /dev/cpuset/system-background/tasks
 
-service ifaadaemon /system/vendor/bin/sh /system/bin/ifaadaemon
-    class late_start
-    user system
-    group system
-    writepid /dev/cpuset/system-background/tasks
+#service ifaadaemon /system/vendor/bin/sh /system/bin/ifaadaemon
+#    class late_start
+#    user system
+#    group system
+#    writepid /dev/cpuset/system-background/tasks
 
 service remosaic_daemon /system/vendor/bin/sh /system/vendor/bin/remosaic_daemon
     class late_start
