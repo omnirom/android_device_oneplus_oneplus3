@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6b69d5d_67d2cab1",
+        "filename": "sepolicy/file_contexts",
+        "patchSetId": 4
+      },
+      "lineNbr": 25,
+      "author": {
+        "id": 1000026
+      },
+      "writtenOn": "2017-11-18T12:42:24Z",
+      "side": 1,
+      "message": "actually we might need /data/time back for a TWRP compatibilty hack. will try to symlink it instead",
+      "revId": "6f16afe3566b1db1e29f4cbde3252acec81ef3db",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    }
+  ]
+}
