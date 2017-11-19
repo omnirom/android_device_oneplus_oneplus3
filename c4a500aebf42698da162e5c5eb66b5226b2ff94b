@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "0c897a02_d388047c",
+        "filename": "sepolicy/file_contexts",
+        "patchSetId": 5
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1000049
+      },
+      "writtenOn": "2017-11-19T00:01:23Z",
+      "side": 1,
+      "message": "This causes build failure due to data/time already being defined in device/qcom/sepolicy",
+      "revId": "c4a500aebf42698da162e5c5eb66b5226b2ff94b",
+      "serverId": "56841c99-7c94-43d4-bf0b-cb4707e66d55",
+      "unresolved": false
+    }
+  ]
+}
