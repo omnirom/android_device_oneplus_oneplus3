@@ -124,7 +124,7 @@ AUDIO_FEATURE_ENABLED_AAC_ADTS_OFFLOAD := true
 
 AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
 BOARD_USES_ALSA_AUDIO := true
-BOARD_SUPPORTS_SOUND_TRIGGER := false
+BOARD_SUPPORTS_SOUND_TRIGGER := true
 USE_CUSTOM_AUDIO_POLICY := 1
 TARGET_USES_QCOM_MM_AUDIO := true
 # default is anyway false but just to keep in mind
@@ -180,8 +180,7 @@ BOARD_NFC_CHIPSET := pn548
 BOARD_NFC_HAL_SUFFIX := $(TARGET_BOARD_PLATFORM)
 
 # ANT+
-# TODO
-#BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
+BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
@@ -200,7 +199,6 @@ BOARD_ROOT_EXTRA_FOLDERS := bt_firmware firmware persist
 # selinux
 include device/qcom/sepolicy/sepolicy.mk
 
-# TODO
 BOARD_SEPOLICY_DIRS += $(BOARD_PATH)/sepolicy
 
 include vendor/omni/sepolicy/sepolicy.mk
