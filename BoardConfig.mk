@@ -176,8 +176,7 @@ BOARD_NFC_CHIPSET := pn548
 BOARD_NFC_HAL_SUFFIX := $(TARGET_BOARD_PLATFORM)
 
 # ANT+
-# TODO
-#BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
+BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
@@ -195,7 +194,6 @@ BOARD_ROOT_EXTRA_FOLDERS := bt_firmware firmware persist
 # selinux
 include device/qcom/sepolicy/sepolicy.mk
 
-# TODO
 BOARD_SEPOLICY_DIRS += $(BOARD_PATH)/sepolicy
 
 include vendor/omni/sepolicy/sepolicy.mk
