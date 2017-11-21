@@ -132,7 +132,6 @@ PRODUCT_COPY_FILES += \
 
 # Fingerprint sensor
 PRODUCT_PACKAGES += \
-    fingerprintd \
     fingerprint.msm8996
 
 # GPS
@@ -257,10 +256,6 @@ PRODUCT_PACKAGES += \
     dhcpcd.conf \
     wpa_supplicant \
     wpa_supplicant.conf
-
-# Camera
-PRODUCT_PACKAGES += \
-    libcamera_shim
 
 #PRODUCT_PACKAGES += \
     SnapdragonCamera \
