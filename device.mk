@@ -130,11 +130,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/sound_trigger_mixer_paths.xml:system/vendor/etc/sound_trigger_mixer_paths.xml \
     $(LOCAL_PATH)/audio/sound_trigger_platform_info.xml:system/vendor/etc/sound_trigger_platform_info.xml
 
-# Fingerprint sensor
-PRODUCT_PACKAGES += \
-    fingerprintd \
-    fingerprint.msm8996
-
 # GPS
 PRODUCT_PACKAGES += \
     gps.conf \
@@ -257,10 +252,6 @@ PRODUCT_PACKAGES += \
     dhcpcd.conf \
     wpa_supplicant \
     wpa_supplicant.conf
-
-# Camera
-PRODUCT_PACKAGES += \
-    libcamera_shim
 
 #PRODUCT_PACKAGES += \
     SnapdragonCamera \
