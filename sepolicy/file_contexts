@@ -15,6 +15,8 @@
 /sys/devices/soc/leds-qpnp-24/leds(/.*)? u:object_r:sysfs_leds:s0
 /sys/devices/soc/leds-qpnp-18/leds(/.*)? u:object_r:sysfs_leds:s0
 /sys/kernel/debug/rmt_storage(/.*)?              u:object_r:debugfs_rmt_storage:s0
+/sys/kernel/debug/rpm_stats                      u:object_r:debugfs_rpm:s0
+/sys/kernel/debug/rpm_master_stats               u:object_r:debugfs_rpm:s0
 
 # FRP partition
 /dev/block/platform/soc/624000.ufshc/by-name/config             u:object_r:frp_block_device:s0
@@ -25,5 +27,7 @@
 /data/misc/perfd(/.*)?                                          u:object_r:perfd_data_file:s0
 /data/system/perfd(/.*)?                                        u:object_r:perfd_data_file:s0
 /data/oemnvitems(/.*)?                                          u:object_r:nv_data_file:s0
+/data/vendor/time(/.*)?                                         u:object_r:time_data_file:s0
 
 /(vendor|system/vendor)/bin/perfd           u:object_r:perfd_exec:s0
+/(vendor|system/vendor)/bin/hw/android\.hardware\.power@1\.0-service\.oneplus3          u:object_r:hal_power_default_exec:s0
