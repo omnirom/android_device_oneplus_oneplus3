@@ -132,6 +132,8 @@ AUDIO_FEATURE_ENABLED_PLAYBACK_ULL := false
 
 # Camera
 USE_CAMERA_STUB := true
+BOARD_USES_SNAPDRAGONCAMERA_VERSION := 2
+TARGET_USES_QTI_CAMERA2CLIENT := true
 
 # Disable secure discard because it's SLOW
 BOARD_SUPPRESS_SECURE_ERASE := true
@@ -204,7 +206,7 @@ BOARD_SEPOLICY_DIRS += $(BOARD_PATH)/sepolicy
 include vendor/omni/sepolicy/sepolicy.mk
 
 DEVICE_MANIFEST_FILE := $(BOARD_PATH)/configs/manifest.xml
-
+DEVICE_MATRIX_FILE   := $(BOARD_PATH)/configs/compatibility_matrix.xml
 TARGET_FS_CONFIG_GEN := $(BOARD_PATH)/configs/config.fs
 
 # for offmode charging
