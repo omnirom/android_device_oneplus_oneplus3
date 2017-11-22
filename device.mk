@@ -261,8 +261,8 @@ PRODUCT_PACKAGES += \
     wpa_supplicant \
     wpa_supplicant.conf
 
-#PRODUCT_PACKAGES += \
-    SnapdragonCamera \
+PRODUCT_PACKAGES += \
+    SnapdragonCamera2 \
 
 PRODUCT_PACKAGES += \
     Oneplus3Parts
