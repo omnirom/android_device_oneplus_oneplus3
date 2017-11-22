@@ -35,6 +35,8 @@ TARGET_BOOTANIMATION_SIZE := 1080p
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
 
+PRODUCT_PACKAGE_OVERLAYS += vendor/omni/overlay/CarrierConfig
+
 # Inherit from hardware-specific part of the product configuration
 $(call inherit-product, device/oneplus/oneplus3/device.mk)
 
