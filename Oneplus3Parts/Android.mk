@@ -19,6 +19,7 @@ LOCAL_RESOURCE_DIR := $(package_resource_overlays) $(LOCAL_RESOURCE_DIR)
 
 LOCAL_PROGUARD_ENABLED := disabled
 LOCAL_DEX_PREOPT := false
+LOCAL_JAVA_LIBRARIES := telephony-common
 
 include $(BUILD_PACKAGE)
 
