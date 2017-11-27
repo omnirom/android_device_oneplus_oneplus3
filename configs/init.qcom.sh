@@ -90,7 +90,7 @@ start_msm_irqbalance_8939()
 
 start_msm_irqbalance()
 {
-	if [ -f /vendor/bin/msm_irqbalance ]; then
+	if [ -f /system/vendor/bin/msm_irqbalance ]; then
 		case "$platformid" in
 		    "246" | "305" | "317" | "324" | "325" | "326" | "345" | "346")
 			start vendor.msm_irqbalance;;

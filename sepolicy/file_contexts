@@ -14,6 +14,7 @@
 /sys/devices/soc/70000.qcom,msm-thermal/uio(/.*)?   u:object_r:sysfs_thermal:s0
 /sys/devices/soc/leds-qpnp-24/leds(/.*)? u:object_r:sysfs_leds:s0
 /sys/devices/soc/leds-qpnp-18/leds(/.*)? u:object_r:sysfs_leds:s0
+/sys/devices/soc/leds-qpnp-25/leds(/.*)? u:object_r:sysfs_leds:s0
 /sys/kernel/debug/rmt_storage(/.*)?              u:object_r:debugfs_rmt_storage:s0
 /sys/kernel/debug/rpm_stats                      u:object_r:debugfs_rpm:s0
 /sys/kernel/debug/rpm_master_stats               u:object_r:debugfs_rpm:s0
