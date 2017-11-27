@@ -58,7 +58,7 @@ TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_APPEND_DTB := true
-TARGET_KERNEL_SOURCE := kernel/oneplus/msm8996
+TARGET_KERNEL_SOURCE := kernel/oneplus/msm8996-new
 TARGET_KERNEL_CONFIG := omni_oneplus3_defconfig
 
 # partitions
@@ -211,7 +211,7 @@ TARGET_FS_CONFIG_GEN := $(BOARD_PATH)/configs/config.fs
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 
 # Recovery:Start
-TARGET_RECOVERY_FSTAB := $(BOARD_PATH)/configs/fstab.qcom
+TARGET_RECOVERY_FSTAB := $(BOARD_PATH)/recovery/recovery.fstab
 TW_THEME := portrait_hdpi
 BOARD_HAS_NO_REAL_SDCARD := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
