@@ -76,19 +76,18 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
     frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
-    frameworks/native/data/etc/android.hardware.vulkan.level-0.xml:system/etc/permissions/android.hardware.vulkan.level.xml \
-    frameworks/native/data/etc/android.hardware.vulkan.version-1_0_3.xml:system/etc/permissions/android.hardware.vulkan.version.xml
+    frameworks/native/data/etc/android.hardware.vulkan.level-0.xml:system/vendor/etc/permissions/android.hardware.vulkan.level.xml \
+    frameworks/native/data/etc/android.hardware.vulkan.version-1_0_3.xml:system/vendor/etc/permissions/android.hardware.vulkan.version.xml
 
 # Ramdisk
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/init.qcom.rc:root/init.qcom.rc \
-    $(LOCAL_PATH)/configs/init.qcom.sh:root/init.qcom.sh \
-    $(LOCAL_PATH)/configs/init.qcom.power.rc:root/init.qcom.power.rc \
-    $(LOCAL_PATH)/configs/init.qcom.usb.rc:root/init.qcom.usb.rc \
-    $(LOCAL_PATH)/configs/init.qcom.usb.sh:root/init.qcom.usb.sh \
-    $(LOCAL_PATH)/configs/ueventd.qcom.rc:root/ueventd.qcom.rc \
-    $(LOCAL_PATH)/configs/init.recovery.qcom.rc:root/init.recovery.qcom.rc \
-    $(LOCAL_PATH)/configs/fstab.qcom:root/fstab.qcom
+    $(LOCAL_PATH)/configs/init.qcom.rc:system/vendor/etc/init/hw/init.qcom.rc \
+    $(LOCAL_PATH)/configs/init.qcom.sh:system/vendor/bin/init.qcom.sh \
+    $(LOCAL_PATH)/configs/init.qcom.power.rc:system/vendor/etc/init/hw/init.qcom.power.rc \
+    $(LOCAL_PATH)/configs/init.qcom.usb.rc:system/vendor/etc/init/hw/init.qcom.usb.rc \
+    $(LOCAL_PATH)/configs/init.qcom.usb.sh:system/vendor/bin/init.qcom.usb.sh \
+    $(LOCAL_PATH)/configs/ueventd.qcom.rc:system/vendor/ueventd.rc \
+    $(LOCAL_PATH)/configs/fstab.qcom:system/vendor/etc/fstab.qcom
 
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
