@@ -6,3 +6,4 @@ get_prop(priv_app, net_dns_prop);
 allow priv_app device:dir { open read };
 allow priv_app block_device:dir { search };
 binder_call(priv_app, hal_memtrack_default);
+auditallow priv_app qti_telephony_prop:property_service set;
