@@ -16,7 +16,8 @@
 
 #define CAMERA_PARAMETERS_EXTRA_C \
     const char CameraParameters::CLIENT_PACKAGE_NAME[] = "client-package-name"; \
-    const char CameraParameters::KEY_SUPPORTED_VIDEO_SIZES_60FPS[] = "support-60fps-video-sizes";
+    const char CameraParameters::KEY_SUPPORTED_VIDEO_SIZES_60FPS[] = "support-60fps-video-sizes"; \
+    const char *gClientPackageName;
 
 #define CAMERA_PARAMETERS_EXTRA_H \
     static const char CLIENT_PACKAGE_NAME[]; \
