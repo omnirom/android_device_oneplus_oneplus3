@@ -31,11 +31,14 @@
 #include <fcntl.h>
 #include <string>
 #include <android-base/properties.h>
+#include <android-base/logging.h>
 
-#include "vendor_init.h"
 #include "property_service.h"
 #include "util.h"
 #include "log.h"
+
+namespace android {
+namespace init {
 
 static int read_file2(const char *fname, char *data, int max_size)
 {
@@ -118,7 +121,8 @@ static void import_panel_prop(const std::string& key, const std::string& value, 
 
 void vendor_load_properties() {
     std::string rf_version = android::base::GetProperty("ro.boot.rf_version", "");
-
+    LOG(INFO) << __func__ << "\n";
+    
     if (rf_version == "11") {
         /* China */
         load_op3("ONEPLUS A3000");
@@ -164,3 +168,5 @@ void vendor_load_properties() {
 
     import_kernel_cmdline(false, import_panel_prop);
 }
+}  // namespace init
+}  // namespace android
