@@ -109,3 +109,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.broadcastradio@1.0-impl
+
+PRODUCT_PACKAGES += \
+    android.hidl.base@1.0
