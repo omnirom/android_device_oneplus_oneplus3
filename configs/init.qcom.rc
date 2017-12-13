@@ -828,19 +828,19 @@ service cnd /system/vendor/bin/cnd
     group system wifi inet radio wakelock net_admin
     writepid /dev/cpuset/system-background/tasks
 
-service dpmQmiMgr /system/vendor/bin/dpmQmiMgr
-    class main
-    user system
-    group system
-    writepid /dev/cpuset/system-background/tasks
+#service dpmQmiMgr /system/vendor/bin/dpmQmiMgr
+#    class main
+#    user system
+#    group system
+#    writepid /dev/cpuset/system-background/tasks
 
-service dpmd /system/bin/dpmd
-    class late_start
-    socket dpmd stream 660 root system
-    socket tcm  stream 660 root inet
-    socket dpmwrapper stream 660 root inet
-    group system readproc inet radio wakelock
-    writepid /dev/cpuset/system-background/tasks
+#service dpmd /system/bin/dpmd
+#    class late_start
+#    socket dpmd stream 660 root system
+#    socket tcm  stream 660 root inet
+#    socket dpmwrapper stream 660 root inet
+#    group system readproc inet radio wakelock
+#    writepid /dev/cpuset/system-background/tasks
 
 service irsc_util /system/vendor/bin/irsc_util /system/vendor/etc/sec_config
     class core
