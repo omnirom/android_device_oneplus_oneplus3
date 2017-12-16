@@ -48,7 +48,7 @@ TARGET_USES_64_BIT_BINDER := true
 
 ENABLE_CPUSETS := true
 
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.selinux=enforcing user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff androidboot.bootdevice=624000.ufshc
+BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom androidboot.selinux=permissive user_debug=31 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 cma=32M@0-0xffffffff androidboot.bootdevice=624000.ufshc
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x02000000
@@ -125,7 +125,7 @@ AUDIO_FEATURE_ENABLED_AAC_ADTS_OFFLOAD := true
 AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
 BOARD_USES_ALSA_AUDIO := true
 BOARD_SUPPORTS_SOUND_TRIGGER := true
-USE_CUSTOM_AUDIO_POLICY := 1
+#USE_CUSTOM_AUDIO_POLICY := 1
 TARGET_USES_QCOM_MM_AUDIO := true
 # default is anyway false but just to keep in mind
 AUDIO_FEATURE_ENABLED_PLAYBACK_ULL := false
