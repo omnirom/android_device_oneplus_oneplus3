@@ -136,6 +136,7 @@ persist.mm.enable.prefetch=true
 
 # default is already true - just for reference
 ro.sys.sdcardfs=true
+ro.sys.sdcardfs.gid_derivation.enable=false
 
 #enable camera read sensors data
 persist.camera.gyro.disable=0
