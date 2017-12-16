@@ -33,7 +33,7 @@
     "remote": "omnirom",
     "repository": "android_device_qcom_caf-sepolicy",
     "target_path": "device/qcom/sepolicy",
-    "revision": "android-8.0"
+    "revision": "android-8.1"
   },
   {
     "repository": "android_external_ant-wireless_antradio-library",
@@ -56,7 +56,7 @@
     "remote": "omnirom",
     "repository": "android_kernel_oneplus_msm8996",
     "target_path": "kernel/oneplus/msm8996",
-    "revision": "android-8.0"
+    "revision": "android-8.1"
   },
   {
     "remote": "omnirom",
