@@ -3,7 +3,7 @@
     "remote": "omnirom",
     "repository": "android_hardware_qcom_display-caf-msm8996",
     "target_path": "hardware/qcom/display-caf-msm8996",
-    "revision": "android-8.0"
+    "revision": "android-8.1"
   },
   {
     "remote": "omnirom",
@@ -15,13 +15,7 @@
     "remote": "omnirom",
     "repository": "android_hardware_qcom_media-caf-msm8996",
     "target_path": "hardware/qcom/media-caf-msm8996",
-    "revision": "android-8.0"
-  },
-  {
-    "remote": "omnirom",
-    "repository": "android_packages_apps_SnapdragonCamera",
-    "target_path": "packages/apps/SnapdragonCamera",
-    "revision": "android-7.1"
+    "revision": "android-8.1"
   },
   {
     "remote": "omnirom",
