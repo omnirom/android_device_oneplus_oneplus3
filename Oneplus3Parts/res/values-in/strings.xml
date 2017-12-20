@@ -14,4 +14,61 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources></resources>
+<resources>
+  <string name="app_name">Oneplus 3</string>
+  <string name="category_gestures_title">Gestur layar padam</string>
+  <string name="category_vibrator">Penggetar</string>
+  <string name="vib_strength_title_head">Kekuatan</string>
+  <string name="vib_strength_summary_head">Atur kekuatan penggetar</string>
+  <string name="vib_test">Tes</string>
+  <string name="advanced_settings">Lanjutan</string>
+  <string name="category_slider">Penggeser</string>
+  <string name="slider_mode_title">Mode penggeser</string>
+  <string name="buttons_title">Tombol</string>
+  <string name="swap_back_recents_title">Tukar posisi tombol recents dan kembali</string>
+  <string name="graphics_title">Grafik</string>
+  <string name="srgb_mode_title">Mode sRGB</string>
+  <string name="hbm_mode_title">Mode kecerahan tinggi</string>
+  <string name="proxi_summary_head">Cek sensor jarak sebelum mengaktifkan gestur dan sensor sidik jari</string>
+  <string name="proxi_title_head">Cek sensor jarak</string>
+  <string name="slider_mode_off">Mati</string>
+  <string name="slider_mode_vibrate">Getar</string>
+  <string name="slider_mode_silent">Senyap</string>
+  <string name="slider_mode_priority">Hanya prioritas</string>
+  <string name="slider_mode_alarm">Hanya alarm</string>
+  <string name="slider_mode_dnd">Hening</string>
+  <string name="slider_mode_title_top">Posisi atas</string>
+  <string name="slider_mode_title_center">Posisi tengah</string>
+  <string name="slider_mode_title_bottom">Posisi bawah</string>
+  <string name="dci_mode_title">Mode warna gammut luas</string>
+  <string name="choose_app">Pilih apl</string>
+  <string name="category_double_swipe_gesture">Gestur ||</string>
+  <string name="gesture_app_title">Luncurkan apl</string>
+  <string name="category_circle_gesture">Gestur O</string>
+  <string name="category_down_arrow_gesture">Gestur V</string>
+  <string name="category_up_arrow_gesture">Gestur A</string>
+  <string name="category_left_arrow_gesture">Gestur &lt;</string>
+  <string name="category_right_arrow_gesture">Gestur &gt;</string>
+  <string name="category_gestures_summary">Atur opsi gestur layar padam</string>
+  <string name="torch_entry">Senter</string>
+  <string name="disabled_entry">Nonaktif</string>
+  <string name="camera_entry">Kamera</string>
+  <string name="music_play_entry">Putar/Jeda musik</string>
+  <string name="music_prev_entry">Trek sebelumnya</string>
+  <string name="music_next_entry">Trek selanjutnya</string>
+  <string name="not_ready_summary">Menyelesaikan...</string>
+  <string name="resolve_failed_summary">Gagal menyelesaikan apl</string>
+  <string name="category_down_swipe_gesture">Gesek bawah</string>
+  <string name="category_up_swipe_gesture">Gesek atas</string>
+  <string name="category_left_swipe_gesture">Gesek kiri</string>
+  <string name="category_right_swipe_gesture">Gesek kanan</string>
+  <string name="doze_category_title">Tampilan ambien</string>
+  <string name="doze_category_summary">Nyalakan layar apabila anda menerima notifikasi</string>
+  <string name="wave_check_summary">Kedipkan notifikasi pada lambaian tangan</string>
+  <string name="wave_check_title">Lambai tangan</string>
+  <string name="tilt_check_summary">Kedipkan notifikasi saat mengangkat perangkat</string>
+  <string name="tilt_check_title">Angkat</string>
+  <string name="pocket_check_summary">Kedipkan notifikasi saat mengambil perangkat dari saku</string>
+  <string name="pocket_check_title">Saku</string>
+  <string name="ambient_display_enable">Layar ambien harus diaktifkan di pengaturan tampilan</string>
+</resources>
