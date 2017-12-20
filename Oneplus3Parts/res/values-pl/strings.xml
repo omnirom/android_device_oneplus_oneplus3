@@ -14,4 +14,54 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources></resources>
+<resources>
+  <string name="app_name">OnePlus 3</string>
+  <string name="category_gestures_title">Gesty na wyłączonym ekranie</string>
+  <string name="category_vibrator">Silnik wibracji</string>
+  <string name="vib_strength_title_head">Siła</string>
+  <string name="vib_strength_summary_head">Zdefiniuj siłę wibracji</string>
+  <string name="vib_test">Test</string>
+  <string name="advanced_settings">Zaawansowane</string>
+  <string name="category_slider">Suwak</string>
+  <string name="slider_mode_title">Tryb suwaka</string>
+  <string name="buttons_title">Przyciski</string>
+  <string name="swap_back_recents_title">Zamień przyciski wstecz i ostatnie aplikacje</string>
+  <string name="graphics_title">Grafika</string>
+  <string name="srgb_mode_title">Tryb sRGB</string>
+  <string name="hbm_mode_title">Tryb wysokiej jasności</string>
+  <string name="proxi_summary_head">Sprawdź czujnik zbliżeniowy dla obsługi gestów i czytnika linii papilarnych</string>
+  <string name="proxi_title_head">Sprawdzanie czujnika zbliżeniowego</string>
+  <string name="slider_mode_off">Wyłączony</string>
+  <string name="slider_mode_vibrate">Wibracje</string>
+  <string name="slider_mode_silent">Cichy</string>
+  <string name="slider_mode_priority">Tylko priorytetowe</string>
+  <string name="slider_mode_alarm">Tylko alarmy</string>
+  <string name="slider_mode_dnd">Całkowita cisza</string>
+  <string name="slider_mode_title_top">Górna pozycja</string>
+  <string name="slider_mode_title_center">Centralna pozycja</string>
+  <string name="slider_mode_title_bottom">Dolna pozycja</string>
+  <string name="dci_mode_title">Tryb szerokiej gamy kolorów</string>
+  <string name="choose_app">Wybierz aplikację</string>
+  <string name="category_double_swipe_gesture">Narysuj II</string>
+  <string name="gesture_app_title">Uruchom aplikację</string>
+  <string name="category_circle_gesture">Narysuj O</string>
+  <string name="category_down_arrow_gesture">Narysuj V</string>
+  <string name="category_up_arrow_gesture">Narysuj A</string>
+  <string name="category_left_arrow_gesture">&lt; gest</string>
+  <string name="category_right_arrow_gesture">&gt; gest</string>
+  <string name="category_gestures_summary">Konfiguruj akcje gestów na wyłączonym ekranie</string>
+  <string name="torch_entry">Latarka</string>
+  <string name="disabled_entry">Wyłączony</string>
+  <string name="camera_entry">Aparat</string>
+  <string name="music_play_entry">Odtwarzaj/Wstrzymaj muzykę</string>
+  <string name="music_prev_entry">Poprzedni utwór</string>
+  <string name="music_next_entry">Następny utwór</string>
+  <string name="not_ready_summary">Rozwiązywanie...</string>
+  <string name="category_down_swipe_gesture">Przeciągnięcie w dół</string>
+  <string name="category_up_swipe_gesture">Przeciągnięcie w górę</string>
+  <string name="category_left_swipe_gesture">Przeciągnięcie w lewo</string>
+  <string name="category_right_swipe_gesture">Przeciągnięcie w prawo</string>
+  <string name="doze_category_title">Ekran dostosowany do otoczenia</string>
+  <string name="doze_category_summary">Obudź ekran po otrzymaniu powiadomienia</string>
+  <string name="wave_check_summary">Pulsujące powiadomienia po machnięciu ręką</string>
+</resources>
