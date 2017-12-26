@@ -343,3 +343,8 @@ void undo_initial_hint_action()
         }
     }
 }
+
+bool is_touchboost_enabled()
+{
+    return property_get_bool("vendor.power.touchboost_enabled", true);
+}
