@@ -129,6 +129,7 @@ void power_init(void)
         }
         close(fd);
     }
+    ALOGI("is_touchboost_enabled = %d", is_touchboost_enabled());
 }
 
 static void process_video_decode_hint(void *metadata)
@@ -409,6 +410,10 @@ void power_hint(power_hint_t hint, void *data)
         case POWER_HINT_INTERACTION:
         {
             char governor[80];
+
+            if (!is_touchboost_enabled()) {
+                return;
+            }
 
             if (get_scaling_governor(governor, sizeof(governor)) == -1) {
                 ALOGE("Can't obtain scaling governor.");
