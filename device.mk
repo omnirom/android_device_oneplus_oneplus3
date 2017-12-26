@@ -88,9 +88,11 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/init.qcom.sh:system/vendor/bin/init.qcom.sh \
     $(LOCAL_PATH)/configs/init.qcom.power.rc:system/vendor/etc/init/hw/init.qcom.power.rc \
     $(LOCAL_PATH)/configs/init.qcom.usb.rc:system/vendor/etc/init/hw/init.qcom.usb.rc \
-    $(LOCAL_PATH)/configs/init.qcom.usb.sh:system/vendor/bin/init.qcom.usb.sh \
     $(LOCAL_PATH)/configs/ueventd.qcom.rc:system/vendor/ueventd.rc \
     $(LOCAL_PATH)/configs/fstab.qcom:system/vendor/etc/fstab.qcom
+
+#PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/init.qcom.usb.sh:system/vendor/bin/init.qcom.usb.sh \
 
 PRODUCT_AAPT_CONFIG := normal
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
