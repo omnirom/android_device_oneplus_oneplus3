@@ -24,9 +24,9 @@ import android.support.v7.preference.Preference;
 import android.support.v7.preference.Preference.OnPreferenceChangeListener;
 import android.support.v7.preference.PreferenceManager;
 
-public class DCIModeSwitch implements OnPreferenceChangeListener {
+public class NightModeSwitch implements OnPreferenceChangeListener {
 
-    private static final String FILE = "/sys/devices/virtual/graphics/fb0/dci_p3";
+    private static final String FILE = "/sys/devices/virtual/graphics/fb0/night_mode";
 
     public static String getFile() {
         if (Utils.fileWritable(FILE)) {
