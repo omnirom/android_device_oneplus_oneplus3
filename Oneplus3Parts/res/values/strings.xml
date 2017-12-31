@@ -44,6 +44,10 @@
     <string name="slider_mode_title_bottom">Bottom position</string>
     <string name="dci_mode_summary"></string>
     <string name="dci_mode_title">Wide color gammut mode</string>
+    <string name="night_mode_summary"></string>
+    <string name="night_mode_title">Neutral color mode</string>
+    <string name="oneplus_mode_summary"></string>
+    <string name="oneplus_mode_title">Soft color mode</string>
 
     <string name="choose_app">Choose app</string>
     <string name="category_double_swipe_gesture">II gesture</string>
