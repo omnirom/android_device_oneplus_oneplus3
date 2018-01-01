@@ -73,6 +73,7 @@ on boot
     write /sys/class/android_usb/f_mass_storage/lun/nofua 1
     setprop sys.usb.controller "6a00000.dwc3"
     setprop sys.usb.rndis.func.name "rndis_bam"
+    setprop persist.sys.usb.config.extra none
 
 #service qcom-usb-sh /system/vendor/bin/init.qcom.usb.sh
 #    class core
