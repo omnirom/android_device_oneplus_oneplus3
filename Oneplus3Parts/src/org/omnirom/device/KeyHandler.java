@@ -321,14 +321,6 @@ public class KeyHandler implements DeviceKeyHandler {
          }
     };
 
-    private final SubscriptionManager.OnSubscriptionsChangedListener mOnSubscriptionsChangeListener
-            = new SubscriptionManager.OnSubscriptionsChangedListener() {
-        @Override
-        public void onSubscriptionsChanged() {
-            if (DEBUG) Log.e(TAG, "onSubscriptionsChanged:");
-        }
-    };
-
     public KeyHandler(Context context) {
         mContext = context;
         mEventHandler = new EventHandler();
