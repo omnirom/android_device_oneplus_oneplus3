@@ -122,37 +122,45 @@ static void import_panel_prop(const std::string& key, const std::string& value, 
 void vendor_load_properties() {
     std::string rf_version = android::base::GetProperty("ro.boot.rf_version", "");
     LOG(INFO) << __func__ << "\n";
-    property_set("ro.rf_version", "TDD_FDD_All");
-    property_set("telephony.lteOnCdmaDevice", "1");
 
     if (rf_version == "11") {
         /* China */
         load_op3("ONEPLUS A3000");
         property_set("ro.telephony.default_network", "22");
+        property_set("telephony.lteOnCdmaDevice", "1");
         property_set("persist.vendor.radio.force_on_dc", "true");
+        property_set("ro.rf_version", "TDD_FDD_All");
     } else if (rf_version == "21") {
         /* Europe / Asia model */
         load_op3("ONEPLUS A3003");
         property_set("ro.telephony.default_network", "9");
+        property_set("ro.rf_version", "TDD_FDD_Eu");
     } else if (rf_version == "31") {
         /* Americas */
         load_op3("ONEPLUS A3000");
         property_set("ro.telephony.default_network", "22");
+        property_set("telephony.lteOnCdmaDevice", "1");
         property_set("persist.vendor.radio.force_on_dc", "true");
+        property_set("ro.rf_version", "TDD_FDD_Am");
     } else if (rf_version == "12") {
         /* China model */
         load_op3t("ONEPLUS A3010");
         property_set("ro.telephony.default_network", "22");
+        property_set("telephony.lteOnCdmaDevice", "1");
         property_set("persist.vendor.radio.force_on_dc", "true");
+        property_set("ro.rf_version", "TDD_FDD_All");
     } else if (rf_version == "22") {
         /* Europe / Asia model */
         load_op3t("ONEPLUS A3003");
         property_set("ro.telephony.default_network", "9");
+        property_set("ro.rf_version", "TDD_FDD_Eu");
     } else if (rf_version == "32") {
         /* North America model */
         load_op3t("ONEPLUS A3000");
         property_set("ro.telephony.default_network", "22");
+        property_set("telephony.lteOnCdmaDevice", "1");
         property_set("persist.vendor.radio.force_on_dc", "true");
+        property_set("ro.rf_version", "TDD_FDD_Am");
     } else {
         LOG(INFO) << __func__ << "unexcepted rf version!\n";
     }
