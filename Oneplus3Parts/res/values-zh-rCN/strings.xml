@@ -14,4 +14,38 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources></resources>
+<resources>
+  <string name="category_gestures_title">关闭屏幕手势</string>
+  <string name="category_vibrator">振动</string>
+  <string name="vib_strength_title_head">强度</string>
+  <string name="vib_strength_summary_head">设置振动强度</string>
+  <string name="vib_test">测试</string>
+  <string name="advanced_settings">高级选项</string>
+  <string name="category_slider">滑块</string>
+  <string name="slider_mode_title">滑块模式</string>
+  <string name="buttons_title">按钮</string>
+  <string name="swap_back_recents_title">切换 返回/最近任务 按键</string>
+  <string name="graphics_title">图形</string>
+  <string name="srgb_mode_title">sRGB 模式</string>
+  <string name="slider_mode_off">关闭</string>
+  <string name="slider_mode_vibrate">振动</string>
+  <string name="slider_mode_silent">静音</string>
+  <string name="slider_mode_priority">仅优先打扰</string>
+  <string name="slider_mode_alarm">仅闹钟</string>
+  <string name="slider_mode_dnd">完全静音</string>
+  <string name="choose_app">选择应用</string>
+  <string name="category_left_arrow_gesture">&lt; 手势</string>
+  <string name="category_right_arrow_gesture">&gt; 手势</string>
+  <string name="torch_entry">手电筒</string>
+  <string name="disabled_entry">禁用</string>
+  <string name="camera_entry">相机</string>
+  <string name="music_play_entry">播放/暂停音乐</string>
+  <string name="music_prev_entry">上一首</string>
+  <string name="music_next_entry">下一首</string>
+  <string name="category_down_swipe_gesture">向下滑动</string>
+  <string name="category_up_swipe_gesture">向上滑动</string>
+  <string name="category_left_swipe_gesture">向左滑动</string>
+  <string name="category_right_swipe_gesture">向右滑动</string>
+  <string name="doze_category_title">主动显示</string>
+  <string name="doze_category_summary">收到通知时点亮屏幕</string>
+</resources>
