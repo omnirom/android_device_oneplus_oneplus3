@@ -42,8 +42,6 @@
     <string name="slider_mode_title_top">Top position</string>
     <string name="slider_mode_title_center">Center position</string>
     <string name="slider_mode_title_bottom">Bottom position</string>
-    <string name="dci_mode_summary"></string>
-    <string name="dci_mode_title">Wide color gammut mode</string>
     <string name="night_mode_summary"></string>
     <string name="night_mode_title">Neutral color mode</string>
     <string name="oneplus_mode_summary"></string>
@@ -81,4 +79,8 @@
     <string name="pocket_check_summary">Pulse notifications on removal from pocket</string>
     <string name="pocket_check_title">Pocket</string>
     <string name="ambient_display_enable">Ambient display must be enabled in display settings</string>
+
+    <string name="panel_category_title">Panel modes</string>
+    <string name="panel_category_summary"></string>
+    <string name="off_mode_title">Off</string>
 </resources>
