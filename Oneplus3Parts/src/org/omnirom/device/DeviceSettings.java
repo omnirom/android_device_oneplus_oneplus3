@@ -51,7 +51,6 @@ public class DeviceSettings extends PreferenceFragment implements
     public static final String KEY_SRGB_SWITCH = "srgb";
     public static final String KEY_HBM_SWITCH = "hbm";
     public static final String KEY_PROXI_SWITCH = "proxi";
-    //public static final String KEY_DCI_SWITCH = "dci";
     public static final String KEY_ONEPLUS_SWITCH = "oneplus_mode";
     public static final String KEY_NIGHT_SWITCH = "night_mode";
 
@@ -62,11 +61,10 @@ public class DeviceSettings extends PreferenceFragment implements
     private ListPreference mSliderModeCenter;
     private ListPreference mSliderModeBottom;
     private TwoStatePreference mSwapBackRecents;
-    private TwoStatePreference mSRGBModeSwitch;
+    //private TwoStatePreference mSRGBModeSwitch;
     private TwoStatePreference mHBMModeSwitch;
-    //private TwoStatePreference mDCIModeSwitch;
-    private TwoStatePreference mOneplusModeSwitch;
-    private TwoStatePreference mNightModeSwitch;
+    //private TwoStatePreference mOneplusModeSwitch;
+    //private TwoStatePreference mNightModeSwitch;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
@@ -102,22 +100,17 @@ public class DeviceSettings extends PreferenceFragment implements
         mSwapBackRecents.setChecked(Settings.System.getInt(getContext().getContentResolver(),
                     Settings.System.BUTTON_SWAP_BACK_RECENTS, 0) != 0);
 
-        mSRGBModeSwitch = (TwoStatePreference) findPreference(KEY_SRGB_SWITCH);
+        /*mSRGBModeSwitch = (TwoStatePreference) findPreference(KEY_SRGB_SWITCH);
         mSRGBModeSwitch.setEnabled(SRGBModeSwitch.isSupported());
         mSRGBModeSwitch.setChecked(SRGBModeSwitch.isCurrentlyEnabled(this.getContext()));
-        mSRGBModeSwitch.setOnPreferenceChangeListener(new SRGBModeSwitch());
+        mSRGBModeSwitch.setOnPreferenceChangeListener(new SRGBModeSwitch());*/
 
         mHBMModeSwitch = (TwoStatePreference) findPreference(KEY_HBM_SWITCH);
         mHBMModeSwitch.setEnabled(HBMModeSwitch.isSupported());
         mHBMModeSwitch.setChecked(HBMModeSwitch.isCurrentlyEnabled(this.getContext()));
         mHBMModeSwitch.setOnPreferenceChangeListener(new HBMModeSwitch());
 
-        /*mDCIModeSwitch = (TwoStatePreference) findPreference(KEY_DCI_SWITCH);
-        mDCIModeSwitch.setEnabled(DCIModeSwitch.isSupported());
-        mDCIModeSwitch.setChecked(DCIModeSwitch.isCurrentlyEnabled(this.getContext()));
-        mDCIModeSwitch.setOnPreferenceChangeListener(new DCIModeSwitch());*/
-
-        mOneplusModeSwitch = (TwoStatePreference) findPreference(KEY_ONEPLUS_SWITCH);
+        /*mOneplusModeSwitch = (TwoStatePreference) findPreference(KEY_ONEPLUS_SWITCH);
         mOneplusModeSwitch.setEnabled(OneplusModeSwitch.isSupported());
         mOneplusModeSwitch.setChecked(OneplusModeSwitch.isCurrentlyEnabled(this.getContext()));
         mOneplusModeSwitch.setOnPreferenceChangeListener(new OneplusModeSwitch());
@@ -125,7 +118,7 @@ public class DeviceSettings extends PreferenceFragment implements
         mNightModeSwitch = (TwoStatePreference) findPreference(KEY_NIGHT_SWITCH);
         mNightModeSwitch.setEnabled(NightModeSwitch.isSupported());
         mNightModeSwitch.setChecked(NightModeSwitch.isCurrentlyEnabled(this.getContext()));
-        mNightModeSwitch.setOnPreferenceChangeListener(new NightModeSwitch());
+        mNightModeSwitch.setOnPreferenceChangeListener(new NightModeSwitch());*/
     }
 
     @Override
