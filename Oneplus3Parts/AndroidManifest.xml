@@ -61,7 +61,7 @@
         </activity>
         <activity
             android:name="org.omnirom.device.PanelSettingsActivity"
-            android:exported="false"
+            android:exported="true"
             android:label="@string/panel_category_title"
             android:launchMode="singleTask" >
             <intent-filter>
@@ -74,5 +74,25 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <service
+            android:name="org.omnirom.device.PanelModeTileService"
+            android:icon="@drawable/ic_panel_tile"
+            android:label="@string/tile_panel_mode"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action
+                    android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name="org.omnirom.device.HBMModeTileService"
+            android:icon="@drawable/ic_hbm_tile"
+            android:label="@string/tile_hbm_mode"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action
+                    android:name="android.service.quicksettings.action.QS_TILE"/>
+            </intent-filter>
+        </service>
     </application>
 </manifest>
