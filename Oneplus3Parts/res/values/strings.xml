@@ -82,4 +82,7 @@
     <string name="panel_category_title">Panel modes</string>
     <string name="panel_category_summary"></string>
     <string name="off_mode_title">Off</string>
+    <string name="tile_panel_mode">Panel modes</string>
+    <string name="tile_hbm_mode">High brightness modes</string>
+
 </resources>
