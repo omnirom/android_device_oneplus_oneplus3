@@ -68,6 +68,7 @@
     <string name="category_up_swipe_gesture">Up swipe</string>
     <string name="category_left_swipe_gesture">Left swipe</string>
     <string name="category_right_swipe_gesture">Right swipe</string>
+    <string name="wake_entry">Wakeup</string>
 
     <string name="doze_category_title">Ambient display</string>
     <string name="doze_category_summary">Wake screen when you receive notifications</string>
