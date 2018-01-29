@@ -40,7 +40,8 @@
   <string name="slider_mode_title_top">Pozice nahoře</string>
   <string name="slider_mode_title_center">Pozice uprostřed</string>
   <string name="slider_mode_title_bottom">Pozice dole</string>
-  <string name="dci_mode_title">Režim širokého spektra barev</string>
+  <string name="night_mode_title">Neutrální barevný režim</string>
+  <string name="oneplus_mode_title">Měkký barevný režim</string>
   <string name="choose_app">Vybrat aplikaci</string>
   <string name="category_double_swipe_gesture">Gesto II</string>
   <string name="gesture_app_title">Spustit aplikaci</string>
@@ -62,6 +63,7 @@
   <string name="category_up_swipe_gesture">Tah nahoru</string>
   <string name="category_left_swipe_gesture">Tah doleva</string>
   <string name="category_right_swipe_gesture">Tah doprava</string>
+  <string name="wake_entry">Probuzení</string>
   <string name="doze_category_title">Ambientní displej</string>
   <string name="doze_category_summary">Probudí obrazovku při příjmu oznámění</string>
   <string name="wave_check_summary">Pulzní oznámení při mávnutí rukou</string>
@@ -71,4 +73,9 @@
   <string name="pocket_check_summary">Pulzní oznámení při vyjmutí z kapsy</string>
   <string name="pocket_check_title">Kapsa</string>
   <string name="ambient_display_enable">Ambientní display musí být povolen v nastavení obrazovky</string>
+  <string name="panel_category_title">Režimy panelu</string>
+  <string name="panel_category_summary">Režimy korekce barev panelu</string>
+  <string name="off_mode_title">Vyp.</string>
+  <string name="tile_panel_mode">Režimy panelu</string>
+  <string name="tile_hbm_mode">Režimy s vysokým jasem</string>
 </resources>

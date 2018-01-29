@@ -40,7 +40,8 @@
   <string name="slider_mode_title_top">Üst konum</string>
   <string name="slider_mode_title_center">Merkezî konum</string>
   <string name="slider_mode_title_bottom">Alt konum</string>
-  <string name="dci_mode_title">Geniş renk gamutu modu</string>
+  <string name="night_mode_title">Müstakil renk modu</string>
+  <string name="oneplus_mode_title">Yumuşak renk modu</string>
   <string name="choose_app">Uygulama seçin</string>
   <string name="category_double_swipe_gesture">II hareketi</string>
   <string name="gesture_app_title">Uygulama başlat</string>
@@ -62,6 +63,7 @@
   <string name="category_up_swipe_gesture">Yukarı kaydır</string>
   <string name="category_left_swipe_gesture">Sola kaydır</string>
   <string name="category_right_swipe_gesture">Sağa kaydır</string>
+  <string name="wake_entry">Uyanma</string>
   <string name="doze_category_title">Ortam ekranı</string>
   <string name="doze_category_summary">Bildirim aldığınızda ekranı uyandırın</string>
   <string name="wave_check_summary">Bildirimleri elimi salladığımda göster</string>
@@ -71,4 +73,9 @@
   <string name="pocket_check_summary">Bildirimleri cihazı cebimdem çıkardığımda göster</string>
   <string name="pocket_check_title">Cep</string>
   <string name="ambient_display_enable">Ekran ayarlarındaki ortam ekranı etkinleştirilmelidir</string>
+  <string name="panel_category_title">Panel modları</string>
+  <string name="panel_category_summary">Panel rengini düzeltme modları</string>
+  <string name="off_mode_title">Kapalı</string>
+  <string name="tile_panel_mode">Panel modları</string>
+  <string name="tile_hbm_mode">Yüksek parlaklık modları</string>
 </resources>

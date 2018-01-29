@@ -40,7 +40,8 @@
   <string name="slider_mode_title_top">Posição superior</string>
   <string name="slider_mode_title_center">Posição central</string>
   <string name="slider_mode_title_bottom">Posição inferior</string>
-  <string name="dci_mode_title">Modo de cores ampla gammut</string>
+  <string name="night_mode_title">Modo de côr neutro</string>
+  <string name="oneplus_mode_title">Modo de côr suave</string>
   <string name="choose_app">Escolher aplicação</string>
   <string name="category_double_swipe_gesture">II gestos</string>
   <string name="gesture_app_title">Iniciar aplicação</string>
@@ -62,6 +63,7 @@
   <string name="category_up_swipe_gesture">Deslizar para cima</string>
   <string name="category_left_swipe_gesture">Deslizar para a esquerda</string>
   <string name="category_right_swipe_gesture">Deslizar para a direita</string>
+  <string name="wake_entry">Acordar</string>
   <string name="doze_category_title">Ambient Display</string>
   <string name="doze_category_summary">Acordar o ecrã quando receber notificações</string>
   <string name="wave_check_summary">Notificações de pulso na onda de mão</string>
@@ -71,4 +73,9 @@
   <string name="pocket_check_summary">Notificações de pulso na remoção do bolso</string>
   <string name="pocket_check_title">Bolso</string>
   <string name="ambient_display_enable">Exposição ambiental deve ser habilitada nas configurações de exibição</string>
+  <string name="panel_category_title">Modos do painel</string>
+  <string name="panel_category_summary">Correcção de côr para os modos do painel</string>
+  <string name="off_mode_title">Desligado</string>
+  <string name="tile_panel_mode">Modos do painel</string>
+  <string name="tile_hbm_mode">Modos de luminosidade alta</string>
 </resources>

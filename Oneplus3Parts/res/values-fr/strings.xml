@@ -14,4 +14,68 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources></resources>
+<resources>
+  <string name="app_name">Oneplus 3</string>
+  <string name="category_gestures_title">Gestes d\'écran éteint</string>
+  <string name="category_vibrator">Vibreur</string>
+  <string name="vib_strength_title_head">Intensité</string>
+  <string name="vib_strength_summary_head">Définir l’intensité du vibreur</string>
+  <string name="vib_test">Tester</string>
+  <string name="advanced_settings">Paramètres avancés</string>
+  <string name="category_slider">Curseur</string>
+  <string name="slider_mode_title">Mode curseur</string>
+  <string name="buttons_title">Boutons</string>
+  <string name="swap_back_recents_title">Échanger les boutons retour et récent</string>
+  <string name="graphics_title">Graphiques</string>
+  <string name="srgb_mode_title">mode sRGB</string>
+  <string name="hbm_mode_title">Mode haute luminosité</string>
+  <string name="proxi_summary_head">Vérifier le capteur de proximité pour les gestes d\'écran et le capteur d\'empreinte</string>
+  <string name="proxi_title_head">Vérification de proximité</string>
+  <string name="slider_mode_off">Désactivé</string>
+  <string name="slider_mode_vibrate">Vibreur</string>
+  <string name="slider_mode_silent">Mode silencieux</string>
+  <string name="slider_mode_priority">Priorité seulement</string>
+  <string name="slider_mode_alarm">Alarmes seulement</string>
+  <string name="slider_mode_dnd">Silence total</string>
+  <string name="slider_mode_title_top">Position supérieure</string>
+  <string name="slider_mode_title_center">Position centrale</string>
+  <string name="slider_mode_title_bottom">En bas</string>
+  <string name="night_mode_title">Mode couleur neutre</string>
+  <string name="oneplus_mode_title">Mode couleur soft</string>
+  <string name="choose_app">Choisir l\'app</string>
+  <string name="category_double_swipe_gesture">Geste II</string>
+  <string name="gesture_app_title">Lancer l\'app</string>
+  <string name="category_circle_gesture">Geste O</string>
+  <string name="category_down_arrow_gesture">Geste V</string>
+  <string name="category_up_arrow_gesture">Geste A</string>
+  <string name="category_left_arrow_gesture">Geste &lt;</string>
+  <string name="category_right_arrow_gesture">Geste &gt;</string>
+  <string name="category_gestures_summary">Configurer les mouvements en mode veille</string>
+  <string name="torch_entry">Lampe de poche</string>
+  <string name="disabled_entry">Désactivé</string>
+  <string name="camera_entry">Caméra</string>
+  <string name="music_play_entry">Lecture/Pause de la musique</string>
+  <string name="music_prev_entry">Piste précédente</string>
+  <string name="music_next_entry">Piste suivante</string>
+  <string name="not_ready_summary">Résolution en cours...</string>
+  <string name="resolve_failed_summary">Résolution de l\'app échoué</string>
+  <string name="category_down_swipe_gesture">Glissement vers le bas</string>
+  <string name="category_up_swipe_gesture">Glissement en haut</string>
+  <string name="category_left_swipe_gesture">Glissement à gauche</string>
+  <string name="category_right_swipe_gesture">Glissement vers la droite</string>
+  <string name="wake_entry">Réveille</string>
+  <string name="doze_category_title">Affichage Ambient</string>
+  <string name="doze_category_summary">Réveiller l’écran lorsque vous recevez des notifications</string>
+  <string name="wave_check_summary">Notification lors de mouvement de main</string>
+  <string name="wave_check_title">Mouvement de main</string>
+  <string name="tilt_check_summary">Notifications lorsque l\'appareil est relevé</string>
+  <string name="tilt_check_title">Soulever</string>
+  <string name="pocket_check_summary">Notifications lors du retrait de la poche</string>
+  <string name="pocket_check_title">Poche</string>
+  <string name="ambient_display_enable">L\'affichage ambiant doit être activé dans les réglages d\'affichage</string>
+  <string name="panel_category_title">Modes d\'affichage</string>
+  <string name="panel_category_summary">Modes de correction de couleur</string>
+  <string name="off_mode_title">Désactivé</string>
+  <string name="tile_panel_mode">Modes d\'affichage</string>
+  <string name="tile_hbm_mode">Modes de luminosité élevée</string>
+</resources>

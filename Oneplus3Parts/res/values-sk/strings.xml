@@ -40,7 +40,8 @@
   <string name="slider_mode_title_top">Horná pozícia</string>
   <string name="slider_mode_title_center">Stredná pozícia</string>
   <string name="slider_mode_title_bottom">Spodná pozícia</string>
-  <string name="dci_mode_title">Režim širokého spektra farieb</string>
+  <string name="night_mode_title">Neutrálny farebný režim</string>
+  <string name="oneplus_mode_title">Mäkký farebný režim</string>
   <string name="choose_app">Zvoliť aplikáciu</string>
   <string name="category_double_swipe_gesture">Gesto II</string>
   <string name="gesture_app_title">Spustiť aplikáciu</string>
@@ -62,6 +63,7 @@
   <string name="category_up_swipe_gesture">Potiahnutie nahor</string>
   <string name="category_left_swipe_gesture">Potiahnutie vľavo</string>
   <string name="category_right_swipe_gesture">Potiahnutie vpravo</string>
+  <string name="wake_entry">Prebudenie</string>
   <string name="doze_category_title">Ambientny displej</string>
   <string name="doze_category_summary">Prebudiť obrazovku po prijatí upozornenia</string>
   <string name="wave_check_summary">Zobraziť upozornenia pri mávnutí rukou</string>
@@ -71,4 +73,9 @@
   <string name="pocket_check_summary">Zobraziť upozornenia pri vybratí zariadenia z vrecka</string>
   <string name="pocket_check_title">Vrecko</string>
   <string name="ambient_display_enable">V nastaveniach obrazovky musí byť zapnutý Ambientny displej</string>
+  <string name="panel_category_title">Režimy panelu</string>
+  <string name="panel_category_summary">Režimy korekcie farieb panelu</string>
+  <string name="off_mode_title">Vyp.</string>
+  <string name="tile_panel_mode">Režimy panelu</string>
+  <string name="tile_hbm_mode">Režimy vysokého jasu</string>
 </resources>

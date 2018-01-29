@@ -40,7 +40,8 @@
   <string name="slider_mode_title_top">Ülapositsioon</string>
   <string name="slider_mode_title_center">Keskpositsioon</string>
   <string name="slider_mode_title_bottom">Allpositsioon</string>
-  <string name="dci_mode_title">Laia värviskaala režiim</string>
+  <string name="night_mode_title">Neutraalne värvirežiim</string>
+  <string name="oneplus_mode_title">Pehme värvirežiim</string>
   <string name="choose_app">Vali rakendus</string>
   <string name="category_double_swipe_gesture">II žest</string>
   <string name="gesture_app_title">Käivita rakendus</string>
@@ -62,6 +63,7 @@
   <string name="category_up_swipe_gesture">Üles libistamine</string>
   <string name="category_left_swipe_gesture">Vasakule libistamine</string>
   <string name="category_right_swipe_gesture">Paremale libistamine</string>
+  <string name="wake_entry">Ärkamine</string>
   <string name="doze_category_title">Ambientne ekraan</string>
   <string name="doze_category_summary">Ärata ekraan, kui saad teateid</string>
   <string name="wave_check_summary">Pulseeri teateid käeviibutusel</string>
@@ -71,4 +73,9 @@
   <string name="pocket_check_summary">Pulseeri teateid, kui seade võetakse taskust välja</string>
   <string name="pocket_check_title">Tasku</string>
   <string name="ambient_display_enable">Ambientne ekraan peab olema lubatud kuvaseadetes</string>
+  <string name="panel_category_title">Paneelirežiimid</string>
+  <string name="panel_category_summary">Režiimid paneeli värviparanduseks</string>
+  <string name="off_mode_title">Väljas</string>
+  <string name="tile_panel_mode">Paneelirežiimid</string>
+  <string name="tile_hbm_mode">Kõrge heleduse režiimid</string>
 </resources>

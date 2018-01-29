@@ -40,7 +40,8 @@
   <string name="slider_mode_title_top">Position oben</string>
   <string name="slider_mode_title_center">Position in der Mitte</string>
   <string name="slider_mode_title_bottom">Position unten</string>
-  <string name="dci_mode_title">Breite Farbskala-Modus</string>
+  <string name="night_mode_title">Neutrale Farben-Modus</string>
+  <string name="oneplus_mode_title">Weiche Farben-Modus</string>
   <string name="choose_app">App wählen</string>
   <string name="category_double_swipe_gesture">II-Geste</string>
   <string name="gesture_app_title">App starten</string>
@@ -62,6 +63,7 @@
   <string name="category_up_swipe_gesture">Nach oben wischen</string>
   <string name="category_left_swipe_gesture">Nach links wischen</string>
   <string name="category_right_swipe_gesture">Nach rechts wischen</string>
+  <string name="wake_entry">Aufwachen</string>
   <string name="doze_category_title">Inaktivitätsdisplay</string>
   <string name="doze_category_summary">Das Display einschalten, wenn eine Benachrichtigung empfangen wurde</string>
   <string name="wave_check_summary">Benachrichtigungen pulsieren, wenn mit der Hand gewunken wird</string>
@@ -71,4 +73,9 @@
   <string name="pocket_check_summary">Benachrichtigungen pulsiren, wenn das Gerät aus der Tasche genommen wird</string>
   <string name="pocket_check_title">Tasche</string>
   <string name="ambient_display_enable">Inaktivitätsdisplay muss in den Display-Einstellungen aktiviert sein</string>
+  <string name="panel_category_title">Panel-Modi</string>
+  <string name="panel_category_summary">Modi für die Farbkorrektur des Panel</string>
+  <string name="off_mode_title">Aus</string>
+  <string name="tile_panel_mode">Panel-Modi</string>
+  <string name="tile_hbm_mode">Modus für max. Helligkeit</string>
 </resources>

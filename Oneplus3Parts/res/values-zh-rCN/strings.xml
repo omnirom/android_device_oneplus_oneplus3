@@ -40,7 +40,6 @@
   <string name="slider_mode_title_top">顶部位置</string>
   <string name="slider_mode_title_center">中心位置</string>
   <string name="slider_mode_title_bottom">底部位置</string>
-  <string name="dci_mode_title">广色域模式</string>
   <string name="choose_app">选择应用</string>
   <string name="category_double_swipe_gesture">II 手势</string>
   <string name="gesture_app_title">启动应用程序</string>

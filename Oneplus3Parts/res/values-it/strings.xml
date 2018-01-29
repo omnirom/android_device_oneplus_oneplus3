@@ -40,7 +40,8 @@
   <string name="slider_mode_title_top">Posizione superiore</string>
   <string name="slider_mode_title_center">Posizione centrale</string>
   <string name="slider_mode_title_bottom">Posizione inferiore</string>
-  <string name="dci_mode_title">Modalità di colore larga gammut</string>
+  <string name="night_mode_title">Modalità colori neutri</string>
+  <string name="oneplus_mode_title">Modalità colori soft</string>
   <string name="choose_app">Scegli app</string>
   <string name="category_double_swipe_gesture">Gesture doppio swipe</string>
   <string name="gesture_app_title">Avvia l\'app</string>
@@ -62,6 +63,7 @@
   <string name="category_up_swipe_gesture">Swipe in alto</string>
   <string name="category_left_swipe_gesture">Swipe a sinistra</string>
   <string name="category_right_swipe_gesture">Swipe a destra</string>
+  <string name="wake_entry">Sveglia</string>
   <string name="doze_category_title">Display ambient</string>
   <string name="doze_category_summary">Riattiva lo schermo quando ricevi le notifiche</string>
   <string name="wave_check_summary">Mostra le notifiche al passaggio della mano</string>
@@ -71,4 +73,9 @@
   <string name="pocket_check_summary">Mostra le notifiche quando togli dalla tasca</string>
   <string name="pocket_check_title">Tasca</string>
   <string name="ambient_display_enable">Il display ambient deve essere abilitato dalle impostazioni del display</string>
+  <string name="panel_category_title">Modalità schermo</string>
+  <string name="panel_category_summary">Modalità per la correzione dei colori</string>
+  <string name="off_mode_title">Disattivo</string>
+  <string name="tile_panel_mode">Modalità schermo</string>
+  <string name="tile_hbm_mode">Modalità alta luminosità</string>
 </resources>

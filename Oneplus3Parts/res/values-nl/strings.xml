@@ -23,4 +23,14 @@
   <string name="vib_test">Test</string>
   <string name="advanced_settings">Geavanceerd</string>
   <string name="buttons_title">Knoppen</string>
+  <string name="swap_back_recents_title">Verwissel terug en recents knop</string>
+  <string name="hbm_mode_title">Hoge helderheid modus</string>
+  <string name="slider_mode_off">Uit</string>
+  <string name="slider_mode_vibrate">Trillen</string>
+  <string name="slider_mode_silent">Stil</string>
+  <string name="slider_mode_priority">Alleen prioriteit</string>
+  <string name="slider_mode_alarm">Alleen alarmen</string>
+  <string name="slider_mode_dnd">Helemaal stil</string>
+  <string name="choose_app">Kies app</string>
+  <string name="disabled_entry">Uitgeschakeld</string>
 </resources>

@@ -40,7 +40,8 @@
   <string name="slider_mode_title_top">Felső pozíció</string>
   <string name="slider_mode_title_center">Közép pozíció</string>
   <string name="slider_mode_title_bottom">Alsó pozíció</string>
-  <string name="dci_mode_title">Széles színskála üzemmód</string>
+  <string name="night_mode_title">Semleges szín mód</string>
+  <string name="oneplus_mode_title">Lágy szín mód</string>
   <string name="choose_app">Válasszon alkalmazást</string>
   <string name="category_double_swipe_gesture">II gesztus</string>
   <string name="gesture_app_title">Alkalmazás indítása</string>
@@ -62,6 +63,7 @@
   <string name="category_up_swipe_gesture">Felfelé húzás</string>
   <string name="category_left_swipe_gesture">Balra húzás</string>
   <string name="category_right_swipe_gesture">Jobbra húzás</string>
+  <string name="wake_entry">Ébresztés</string>
   <string name="doze_category_title">Környezeti kijelző</string>
   <string name="doze_category_summary">Képernyő felébresztése értesítés esetén</string>
   <string name="wave_check_summary">Értesítések pulzálása lebegő simításkor</string>
@@ -71,4 +73,9 @@
   <string name="pocket_check_summary">Értesítések pulzálása zsebből való kivétel után</string>
   <string name="pocket_check_title">Zseb</string>
   <string name="ambient_display_enable">A környezeti kijelzőt engedélyezni kell a képernyő beállításokban</string>
+  <string name="panel_category_title">Panel módok</string>
+  <string name="panel_category_summary">Panel színkorrekciós módjai</string>
+  <string name="off_mode_title">Ki</string>
+  <string name="tile_panel_mode">Panel módok</string>
+  <string name="tile_hbm_mode">Nagy fényerő módok</string>
 </resources>
