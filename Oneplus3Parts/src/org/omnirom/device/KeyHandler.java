@@ -54,7 +54,9 @@ import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.HapticFeedbackConstants;
 import android.view.WindowManagerGlobal;
+import android.view.WindowManagerPolicy;
 
 import com.android.internal.os.DeviceKeyHandler;
 import com.android.internal.util.ArrayUtils;
@@ -154,6 +156,8 @@ public class KeyHandler implements DeviceKeyHandler {
     private long mProxySensorTimestamp;
     private boolean mUseWaveCheck;
     private boolean mUsePocketCheck;
+    private boolean mOffScreenGestureFeedback;
+    private WindowManagerPolicy mPolicy;
 
     private SensorEventListener mProximitySensor = new SensorEventListener() {
         @Override
@@ -385,6 +389,7 @@ public class KeyHandler implements DeviceKeyHandler {
         if (!TextUtils.isEmpty(value) && !value.equals(AppSelectListPreference.DISABLED_ENTRY)) {
             if (DEBUG) Log.i(TAG, "isActivityLaunchEvent " + event.getScanCode() + value);
             if (!launchSpecialActions(value)) {
+                vibe();
                 Intent intent = createIntent(value);
                 return intent;
             }
@@ -522,6 +527,7 @@ public class KeyHandler implements DeviceKeyHandler {
             if (rearCameraId != null) {
                 mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
                 try {
+                    vibe();
                     mCameraManager.setTorchMode(rearCameraId, !mTorchEnabled);
                     mTorchEnabled = !mTorchEnabled;
                 } catch (Exception e) {
@@ -531,17 +537,20 @@ public class KeyHandler implements DeviceKeyHandler {
             return true;
         } else if (value.equals(AppSelectListPreference.MUSIC_PLAY_ENTRY)) {
             mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
+            vibe();
             dispatchMediaKeyWithWakeLockToAudioService(KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE);
             return true;
         } else if (value.equals(AppSelectListPreference.MUSIC_NEXT_ENTRY)) {
             if (isMusicActive()) {
                 mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
+                vibe();
                 dispatchMediaKeyWithWakeLockToAudioService(KeyEvent.KEYCODE_MEDIA_NEXT);
             }
             return true;
         } else if (value.equals(AppSelectListPreference.MUSIC_PREV_ENTRY)) {
             if (isMusicActive()) {
                 mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
+                vibe();
                 dispatchMediaKeyWithWakeLockToAudioService(KeyEvent.KEYCODE_MEDIA_PREVIOUS);
             }
             return true;
@@ -605,6 +614,20 @@ public class KeyHandler implements DeviceKeyHandler {
             mUseWaveCheck = Boolean.valueOf(parts[0]);
             mUsePocketCheck = Boolean.valueOf(parts[1]);
             mUseTiltCheck = Boolean.valueOf(parts[2]);
+        }
+    }
+
+    @Override
+    public void setWindowManagerPolicy(WindowManagerPolicy policy) {
+        mPolicy = policy;
+    }
+
+    private void vibe(){
+        boolean doVibrate = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.DEVICE_OFF_SCREEN_GESTURE_FEEDBACK_ENABLED, 0,
+                UserHandle.USER_CURRENT) == 1;
+        if (doVibrate && mPolicy != null) {
+            mPolicy.performHapticFeedbackLw(null, HapticFeedbackConstants.LONG_PRESS, true);
         }
     }
 }
