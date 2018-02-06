@@ -16,7 +16,7 @@
 -->
 <resources>
   <string name="app_name">Oneplus 3</string>
-  <string name="category_gestures_title">Gestes d\'écran éteint</string>
+  <string name="category_gestures_title">Gestes tactiles sur écran - OFF</string>
   <string name="category_vibrator">Vibreur</string>
   <string name="vib_strength_title_head">Intensité</string>
   <string name="vib_strength_summary_head">Définir l’intensité du vibreur</string>
@@ -29,8 +29,8 @@
   <string name="graphics_title">Graphiques</string>
   <string name="srgb_mode_title">mode sRGB</string>
   <string name="hbm_mode_title">Mode haute luminosité</string>
-  <string name="proxi_summary_head">Vérifier le capteur de proximité pour les gestes d\'écran et le capteur d\'empreinte</string>
-  <string name="proxi_title_head">Vérification de proximité</string>
+  <string name="proxi_summary_head">Vérifier le capteur de proximité pour les gestes tactiles et le capteur d\'empreinte</string>
+  <string name="proxi_title_head">Contrôle de proximité</string>
   <string name="slider_mode_off">Désactivé</string>
   <string name="slider_mode_vibrate">Vibreur</string>
   <string name="slider_mode_silent">Mode silencieux</string>
@@ -44,13 +44,13 @@
   <string name="oneplus_mode_title">Mode couleur soft</string>
   <string name="choose_app">Choisir l\'app</string>
   <string name="category_double_swipe_gesture">Geste II</string>
-  <string name="gesture_app_title">Lancer l\'app</string>
+  <string name="gesture_app_title">Lancer l\'appli</string>
   <string name="category_circle_gesture">Geste O</string>
   <string name="category_down_arrow_gesture">Geste V</string>
   <string name="category_up_arrow_gesture">Geste A</string>
   <string name="category_left_arrow_gesture">Geste &lt;</string>
   <string name="category_right_arrow_gesture">Geste &gt;</string>
-  <string name="category_gestures_summary">Configurer les mouvements en mode veille</string>
+  <string name="category_gestures_summary">Configuration des gestes tactiles sur écran - OFF -</string>
   <string name="torch_entry">Lampe de poche</string>
   <string name="disabled_entry">Désactivé</string>
   <string name="camera_entry">Caméra</string>
@@ -62,7 +62,7 @@
   <string name="category_down_swipe_gesture">Glissement vers le bas</string>
   <string name="category_up_swipe_gesture">Glissement en haut</string>
   <string name="category_left_swipe_gesture">Glissement à gauche</string>
-  <string name="category_right_swipe_gesture">Glissement vers la droite</string>
+  <string name="category_right_swipe_gesture">Glissement à droite</string>
   <string name="wake_entry">Réveille</string>
   <string name="doze_category_title">Affichage Ambient</string>
   <string name="doze_category_summary">Réveiller l’écran lorsque vous recevez des notifications</string>
