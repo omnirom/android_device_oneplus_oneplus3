@@ -16,7 +16,7 @@
 -->
 <resources>
   <string name="app_name">Oneplus 3</string>
-  <string name="category_gestures_title">Gestes tactiles sur écran - OFF</string>
+  <string name="category_gestures_title">Gestes tactiles sur écran éteint</string>
   <string name="category_vibrator">Vibreur</string>
   <string name="vib_strength_title_head">Intensité</string>
   <string name="vib_strength_summary_head">Définir l’intensité du vibreur</string>
@@ -25,7 +25,7 @@
   <string name="category_slider">Curseur</string>
   <string name="slider_mode_title">Mode curseur</string>
   <string name="buttons_title">Boutons</string>
-  <string name="swap_back_recents_title">Échanger les boutons retour et récent</string>
+  <string name="swap_back_recents_title">Permuter le bouton retour et le bouton app. récents</string>
   <string name="graphics_title">Graphiques</string>
   <string name="srgb_mode_title">mode sRGB</string>
   <string name="hbm_mode_title">Mode haute luminosité</string>
@@ -50,10 +50,10 @@
   <string name="category_up_arrow_gesture">Geste A</string>
   <string name="category_left_arrow_gesture">Geste &lt;</string>
   <string name="category_right_arrow_gesture">Geste &gt;</string>
-  <string name="category_gestures_summary">Configuration des gestes tactiles sur écran - OFF -</string>
+  <string name="category_gestures_summary">Configuration des gestes tactiles sur écran éteint</string>
   <string name="torch_entry">Lampe de poche</string>
   <string name="disabled_entry">Désactivé</string>
-  <string name="camera_entry">Caméra</string>
+  <string name="camera_entry">Appareil photo</string>
   <string name="music_play_entry">Lecture/Pause de la musique</string>
   <string name="music_prev_entry">Piste précédente</string>
   <string name="music_next_entry">Piste suivante</string>
