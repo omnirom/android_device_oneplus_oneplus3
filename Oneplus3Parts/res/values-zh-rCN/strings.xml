@@ -40,6 +40,8 @@
   <string name="slider_mode_title_top">顶部位置</string>
   <string name="slider_mode_title_center">中心位置</string>
   <string name="slider_mode_title_bottom">底部位置</string>
+  <string name="night_mode_title">中性色彩模式</string>
+  <string name="oneplus_mode_title">柔和色彩模式</string>
   <string name="choose_app">选择应用</string>
   <string name="category_double_swipe_gesture">II 手势</string>
   <string name="gesture_app_title">启动应用程序</string>
@@ -61,7 +63,19 @@
   <string name="category_up_swipe_gesture">向上滑动</string>
   <string name="category_left_swipe_gesture">向左滑动</string>
   <string name="category_right_swipe_gesture">向右滑动</string>
+  <string name="wake_entry">唤醒</string>
   <string name="doze_category_title">主动显示</string>
   <string name="doze_category_summary">收到通知时点亮屏幕</string>
+  <string name="wave_check_summary">手电波脉冲通知</string>
+  <string name="wave_check_title">手波</string>
+  <string name="tilt_check_summary">设备拾取时的脉冲通知</string>
+  <string name="tilt_check_title">拿起</string>
+  <string name="pocket_check_summary">从口袋里取出的脉冲通知</string>
+  <string name="pocket_check_title">口袋</string>
   <string name="ambient_display_enable">在显示设置中必须启用环境显示</string>
+  <string name="panel_category_title">面板模式</string>
+  <string name="panel_category_summary">面板颜色校正模式</string>
+  <string name="off_mode_title">关闭</string>
+  <string name="tile_panel_mode">面板模式</string>
+  <string name="tile_hbm_mode">高亮模式</string>
 </resources>
