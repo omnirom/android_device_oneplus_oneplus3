@@ -111,6 +111,8 @@ persist.vendor.radio.data_con_rprt=1
 persist.vendor.radio.custom_ecc=1
 persist.vendor.radio.sib16_support=1
 persist.radio.aosp_usr_pref_sel=true
+ril.ecclist=112,911,999,*911,#911
+ril.ecclist1=911,112,999,*911,#911,991,994
 
 # RmNet Data
 persist.rmnet.data.enable=true
