@@ -25,9 +25,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.ContentObserver;
-import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraCharacteristics;
-import android.hardware.camera2.CameraManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -60,6 +57,8 @@ import android.view.WindowManagerPolicy;
 
 import com.android.internal.os.DeviceKeyHandler;
 import com.android.internal.util.ArrayUtils;
+import com.android.internal.util.omni.OmniUtils;
+import com.android.internal.statusbar.IStatusBarService;
 
 public class KeyHandler implements DeviceKeyHandler {
 
@@ -142,8 +141,6 @@ public class KeyHandler implements DeviceKeyHandler {
     private static boolean mButtonDisabled;
     private final NotificationManager mNoMan;
     private final AudioManager mAudioManager;
-    private CameraManager mCameraManager;
-    private String mRearCameraId;
     private boolean mTorchEnabled;
     private SensorManager mSensorManager;
     private Sensor mSensor;
@@ -188,7 +185,7 @@ public class KeyHandler implements DeviceKeyHandler {
         }
     };
 
-	private SensorEventListener mTiltSensorListener = new SensorEventListener() {
+    private SensorEventListener mTiltSensorListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
             long delta = SystemClock.elapsedRealtime() - mTiltSensorTimestamp;
@@ -250,22 +247,6 @@ public class KeyHandler implements DeviceKeyHandler {
         }
     }
 
-    private class MyTorchCallback extends CameraManager.TorchCallback {
-        @Override
-        public void onTorchModeChanged(String cameraId, boolean enabled) {
-            if (!cameraId.equals(mRearCameraId))
-                return;
-            mTorchEnabled = enabled;
-        }
-
-        @Override
-        public void onTorchModeUnavailable(String cameraId) {
-            if (!cameraId.equals(mRearCameraId))
-                return;
-            mTorchEnabled = false;
-        }
-    }
-
     private BroadcastReceiver mScreenStateReceiver = new BroadcastReceiver() {
          @Override
          public void onReceive(Context context, Intent intent) {
@@ -287,8 +268,6 @@ public class KeyHandler implements DeviceKeyHandler {
         mSettingsObserver.observe();
         mNoMan = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
-        mCameraManager = (CameraManager) mContext.getSystemService(Context.CAMERA_SERVICE);
-        mCameraManager.registerTorchCallback(new MyTorchCallback(), mEventHandler);
         mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         mTiltSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_TILT_DETECTOR);
@@ -429,26 +408,6 @@ public class KeyHandler implements DeviceKeyHandler {
         }
     }
 
-    private String getRearCameraId() {
-        if (mRearCameraId == null) {
-            try {
-                for (final String cameraId : mCameraManager.getCameraIdList()) {
-                    CameraCharacteristics c = mCameraManager.getCameraCharacteristics(cameraId);
-                    Boolean flashAvailable = c.get(CameraCharacteristics.FLASH_INFO_AVAILABLE);
-                    Integer lensFacing = c.get(CameraCharacteristics.LENS_FACING);
-                    if (flashAvailable != null && flashAvailable
-                            && lensFacing != null && lensFacing == CameraCharacteristics.LENS_FACING_BACK) {
-                        mRearCameraId = cameraId;
-                        break;
-                    }
-                }
-            } catch (CameraAccessException e) {
-                // Ignore
-            }
-        }
-        return mRearCameraId;
-    }
-
     private void onDisplayOn() {
         if (DEBUG) Log.i(TAG, "Display on");
         if (enableProxiSensor()) {
@@ -522,15 +481,15 @@ public class KeyHandler implements DeviceKeyHandler {
 
     private boolean launchSpecialActions(String value) {
         if (value.equals(AppSelectListPreference.TORCH_ENTRY)) {
-            String rearCameraId = getRearCameraId();
-            if (rearCameraId != null) {
-                mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
+            mGestureWakeLock.acquire(GESTURE_WAKELOCK_DURATION);
+            IStatusBarService service = getStatusBarService();
+            if (service != null) {
                 try {
                     vibe();
-                    mCameraManager.setTorchMode(rearCameraId, !mTorchEnabled);
+                    service.toggleCameraFlash();
                     mTorchEnabled = !mTorchEnabled;
-                } catch (Exception e) {
-                    // Ignore
+                } catch (RemoteException e) {
+                    // do nothing.
                 }
             }
             return true;
@@ -628,5 +587,9 @@ public class KeyHandler implements DeviceKeyHandler {
         if (doVibrate && mPolicy != null) {
             mPolicy.performHapticFeedbackLw(null, HapticFeedbackConstants.LONG_PRESS, true);
         }
+    }
+
+    IStatusBarService getStatusBarService() {
+        return IStatusBarService.Stub.asInterface(ServiceManager.getService("statusbar"));
     }
 }
