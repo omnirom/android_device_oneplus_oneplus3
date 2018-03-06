@@ -309,38 +309,36 @@ public class AppSelectListPreference extends CustomDialogPreference {
         mAppIconResourceId = R.drawable.ic_disabled;
 
         if (name != null) {
-            if (mTitle == null) {
-                mAppIconDrawable = null;
-                if (name.equals(DISABLED_ENTRY)) {
-                    mTitle = getContext().getResources().getString(R.string.disabled_entry);
-                    mAppIconResourceId = R.drawable.ic_disabled;
-                } else if (name.equals(TORCH_ENTRY)) {
-                    mTitle = getContext().getResources().getString(R.string.torch_entry);
-                    mAppIconResourceId = R.drawable.ic_flashlight;
-                } else if (name.equals(CAMERA_ENTRY)) {
-                    mTitle = getContext().getResources().getString(R.string.camera_entry);
-                    mAppIconResourceId = R.drawable.ic_camera;
-                } else if (name.equals(MUSIC_PLAY_ENTRY)) {
-                    mTitle = getContext().getResources().getString(R.string.music_play_entry);
-                    mAppIconResourceId = R.drawable.ic_music_play;
-                } else if (name.equals(MUSIC_NEXT_ENTRY)) {
-                    mTitle = getContext().getResources().getString(R.string.music_next_entry);
-                    mAppIconResourceId = R.drawable.ic_music_next;
-                } else if (name.equals(MUSIC_PREV_ENTRY)) {
-                    mTitle = getContext().getResources().getString(R.string.music_prev_entry);
-                    mAppIconResourceId = R.drawable.ic_music_prev;
-                } else if (name.equals(WAKE_ENTRY)) {
-                    mTitle = getContext().getResources().getString(R.string.wake_entry);
-                    mAppIconResourceId = R.drawable.ic_wakeup;
+            mAppIconDrawable = null;
+            if (name.equals(DISABLED_ENTRY)) {
+                mTitle = getContext().getResources().getString(R.string.disabled_entry);
+                mAppIconResourceId = R.drawable.ic_disabled;
+            } else if (name.equals(TORCH_ENTRY)) {
+                mTitle = getContext().getResources().getString(R.string.torch_entry);
+                mAppIconResourceId = R.drawable.ic_flashlight;
+            } else if (name.equals(CAMERA_ENTRY)) {
+                mTitle = getContext().getResources().getString(R.string.camera_entry);
+                mAppIconResourceId = R.drawable.ic_camera;
+            } else if (name.equals(MUSIC_PLAY_ENTRY)) {
+                mTitle = getContext().getResources().getString(R.string.music_play_entry);
+                mAppIconResourceId = R.drawable.ic_music_play;
+            } else if (name.equals(MUSIC_NEXT_ENTRY)) {
+                mTitle = getContext().getResources().getString(R.string.music_next_entry);
+                mAppIconResourceId = R.drawable.ic_music_next;
+            } else if (name.equals(MUSIC_PREV_ENTRY)) {
+                mTitle = getContext().getResources().getString(R.string.music_prev_entry);
+                mAppIconResourceId = R.drawable.ic_music_prev;
+            } else if (name.equals(WAKE_ENTRY)) {
+                mTitle = getContext().getResources().getString(R.string.wake_entry);
+                mAppIconResourceId = R.drawable.ic_wakeup;
+            } else {
+                ComponentName componentName = ComponentName.unflattenFromString(name);
+                PackageItem item = mAdapter.resolveApplication(componentName);
+                if (item != null) {
+                    mTitle = item.mTitle;
+                    mAppIconDrawable = resolveAppIcon(item);
                 } else {
-                    ComponentName componentName = ComponentName.unflattenFromString(name);
-                    PackageItem item = mAdapter.resolveApplication(componentName);
-                    if (item != null) {
-                        mTitle = item.mTitle;
-                        mAppIconDrawable = resolveAppIcon(item);
-                    } else {
-                        mTitle = getContext().getResources().getString(R.string.resolve_failed_summary);
-                    }
+                    mTitle = getContext().getResources().getString(R.string.resolve_failed_summary);
                 }
             }
         } else {
