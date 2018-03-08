@@ -76,7 +76,7 @@ ro.nfc.port=I2C
 # Perf
 ro.am.reschedule_service=true
 ro.vendor.extension_library=libqti-perfd-client.so
-ro.sys.fw.bg_apps_limit=60
+ro.vendor.qti.sys.fw.bg_apps_limit=60
 
 # QCOM
 ro.frp.pst=/dev/block/platform/soc/624000.ufshc/by-name/config
