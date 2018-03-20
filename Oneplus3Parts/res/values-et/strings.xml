@@ -63,6 +63,7 @@
   <string name="category_up_swipe_gesture">Üles libistamine</string>
   <string name="category_left_swipe_gesture">Vasakule libistamine</string>
   <string name="category_right_swipe_gesture">Paremale libistamine</string>
+  <string name="wake_entry">Ärkamine</string>
   <string name="doze_category_title">Ambientne ekraan</string>
   <string name="doze_category_summary">Ärata ekraan, kui saad teateid</string>
   <string name="wave_check_summary">Pulseeri teateid käeviibutusel</string>
