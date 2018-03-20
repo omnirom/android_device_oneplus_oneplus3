@@ -20,7 +20,7 @@
   <string name="category_vibrator">Вибрация</string>
   <string name="vib_strength_title_head">Сила</string>
   <string name="vib_strength_summary_head">Настройте силу вибрации</string>
-  <string name="vib_test">Тест</string>
+  <string name="vib_test">Проверить</string>
   <string name="advanced_settings">Дополнительно</string>
   <string name="category_slider">Ползунок</string>
   <string name="slider_mode_title">Режим ползунка</string>
