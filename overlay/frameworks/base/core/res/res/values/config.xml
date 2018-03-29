@@ -436,4 +436,7 @@
    <!-- Boolean indicating whether the HWC setColorTransform function can be performed efficiently
    in hardware. -->
    <bool name="config_setColorTransformAccelerated">true</bool>
+
+   <!-- Allow automatic adjusting of the screen brightness while dozing in low power state. -->
+   <bool name="config_allowAutoBrightnessWhileDozing">true</bool>
 </resources>
