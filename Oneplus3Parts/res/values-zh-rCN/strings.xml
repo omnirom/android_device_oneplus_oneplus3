@@ -31,6 +31,8 @@
   <string name="hbm_mode_title">高亮模式</string>
   <string name="proxi_summary_head">处理手势和指纹传感器前检查接近传感器</string>
   <string name="proxi_title_head">接近检查</string>
+  <string name="off_screen_gesture_feedback_summary_head">为手势启用触觉反馈</string>
+  <string name="off_screen_gesture_feedback_title_head">振动反馈</string>
   <string name="slider_mode_off">关闭</string>
   <string name="slider_mode_vibrate">振动</string>
   <string name="slider_mode_silent">静音</string>
@@ -67,7 +69,7 @@
   <string name="doze_category_title">主动显示</string>
   <string name="doze_category_summary">收到通知时点亮屏幕</string>
   <string name="wave_check_summary">手电波脉冲通知</string>
-  <string name="wave_check_title">手波</string>
+  <string name="wave_check_title">手电波</string>
   <string name="tilt_check_summary">设备拾取时的脉冲通知</string>
   <string name="tilt_check_title">拿起</string>
   <string name="pocket_check_summary">从口袋里取出的脉冲通知</string>
