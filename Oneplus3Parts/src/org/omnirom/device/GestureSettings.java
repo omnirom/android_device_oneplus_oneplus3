@@ -20,8 +20,14 @@ package org.omnirom.device;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.res.Resources;
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v14.preference.PreferenceFragment;
 import android.support.v7.preference.ListPreference;
@@ -37,6 +43,10 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.util.Log;
+
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 public class GestureSettings extends PreferenceFragment implements
         Preference.OnPreferenceChangeListener {
@@ -77,10 +87,13 @@ public class GestureSettings extends PreferenceFragment implements
     private AppSelectListPreference mUpSwipeApp;
     private AppSelectListPreference mLeftSwipeApp;
     private AppSelectListPreference mRightSwipeApp;
+    private List<AppSelectListPreference.PackageItem> mInstalledPackages = new LinkedList<AppSelectListPreference.PackageItem>();
+    private PackageManager mPm;
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.gesture_settings, rootKey);
+        mPm = getContext().getPackageManager();
 
         mProxiSwitch = (TwoStatePreference) findPreference(KEY_PROXI_SWITCH);
         mProxiSwitch.setChecked(Settings.System.getInt(getContext().getContentResolver(),
@@ -149,6 +162,8 @@ public class GestureSettings extends PreferenceFragment implements
         value = Settings.System.getString(getContext().getContentResolver(), DEVICE_GESTURE_MAPPING_9);
         mRightSwipeApp.setValue(value);
         mRightSwipeApp.setOnPreferenceChangeListener(this);
+
+        new FetchPackageInformationTask().execute();
     }
 
     @Override
@@ -267,5 +282,52 @@ public class GestureSettings extends PreferenceFragment implements
                         .newInstance(preference.getKey());
         fragment.setTargetFragment(this, 0);
         fragment.show(getFragmentManager(), "dialog_preference");
+    }
+
+    private void loadInstalledPackages() {
+        final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        List<ResolveInfo> installedAppsInfo = mPm.queryIntentActivities(mainIntent, 0);
+
+        for (ResolveInfo info : installedAppsInfo) {
+            ActivityInfo activity = info.activityInfo;
+            ApplicationInfo appInfo = activity.applicationInfo;
+            ComponentName componentName = new ComponentName(appInfo.packageName, activity.name);
+            CharSequence label = null;
+            try {
+                label = activity.loadLabel(mPm);
+            } catch (Exception e) {
+            }
+            if (label != null) {
+                final AppSelectListPreference.PackageItem item = new AppSelectListPreference.PackageItem(activity.loadLabel(mPm), 0, componentName);
+                mInstalledPackages.add(item);
+            }
+        }
+        Collections.sort(mInstalledPackages);
+    }
+
+    private class FetchPackageInformationTask extends AsyncTask<Void, Void, Void> {
+        public FetchPackageInformationTask() {
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            loadInstalledPackages();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void feed) {
+            mDoubleSwipeApp.setPackageList(mInstalledPackages);
+            mCircleApp.setPackageList(mInstalledPackages);
+            mDownArrowApp.setPackageList(mInstalledPackages);
+            mUpArrowApp.setPackageList(mInstalledPackages);
+            mLeftArrowApp.setPackageList(mInstalledPackages);
+            mRightArrowApp.setPackageList(mInstalledPackages);
+            mDownSwipeApp.setPackageList(mInstalledPackages);
+            mUpSwipeApp.setPackageList(mInstalledPackages);
+            mLeftSwipeApp.setPackageList(mInstalledPackages);
+            mRightSwipeApp.setPackageList(mInstalledPackages);
+        }
     }
 }
