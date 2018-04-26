@@ -31,6 +31,7 @@
   <string name="hbm_mode_title">Tryb wysokiej jasności</string>
   <string name="proxi_summary_head">Sprawdź czujnik zbliżeniowy dla obsługi gestów i czytnika linii papilarnych</string>
   <string name="proxi_title_head">Sprawdzanie czujnika zbliżeniowego</string>
+  <string name="off_screen_gesture_feedback_title_head">Wibracja przy dotknięciu</string>
   <string name="slider_mode_off">Wyłączony</string>
   <string name="slider_mode_vibrate">Wibracje</string>
   <string name="slider_mode_silent">Cichy</string>
@@ -40,6 +41,7 @@
   <string name="slider_mode_title_top">Górna pozycja</string>
   <string name="slider_mode_title_center">Centralna pozycja</string>
   <string name="slider_mode_title_bottom">Dolna pozycja</string>
+  <string name="night_mode_title">Tryb neutralnego koloru</string>
   <string name="choose_app">Wybierz aplikację</string>
   <string name="category_double_swipe_gesture">Narysuj II</string>
   <string name="gesture_app_title">Uruchom aplikację</string>
@@ -56,6 +58,7 @@
   <string name="music_prev_entry">Poprzedni utwór</string>
   <string name="music_next_entry">Następny utwór</string>
   <string name="not_ready_summary">Rozwiązywanie...</string>
+  <string name="resolve_failed_summary">Rozpoznawanie aplikacji nie powiodło się</string>
   <string name="category_down_swipe_gesture">Przeciągnięcie w dół</string>
   <string name="category_up_swipe_gesture">Przeciągnięcie w górę</string>
   <string name="category_left_swipe_gesture">Przeciągnięcie w lewo</string>

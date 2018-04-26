@@ -31,6 +31,8 @@
   <string name="hbm_mode_title">Modus für max. Helligkeit</string>
   <string name="proxi_summary_head">Näherungssensor für die Nutzung von Gesten und des Fingerabdrucksensors überprüfen</string>
   <string name="proxi_title_head">Näherungssensor überprüfen</string>
+  <string name="off_screen_gesture_feedback_summary_head">Haptisches Feedback für Gesten aktivieren</string>
+  <string name="off_screen_gesture_feedback_title_head">Haptisches Feedback</string>
   <string name="slider_mode_off">Aus</string>
   <string name="slider_mode_vibrate">Vibrieren</string>
   <string name="slider_mode_silent">Lautlos</string>
