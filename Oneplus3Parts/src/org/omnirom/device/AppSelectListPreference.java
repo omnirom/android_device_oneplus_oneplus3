@@ -66,8 +66,9 @@ public class AppSelectListPreference extends CustomDialogPreference {
     private CharSequence mTitle;
     private String mValue;
     private PackageManager mPm;
+    private List<PackageItem> mInstalledPackages = new LinkedList<PackageItem>();
 
-    public class PackageItem implements Comparable<PackageItem> {
+    public static class PackageItem implements Comparable<PackageItem> {
         public final CharSequence mTitle;
         public final int mAppIconResourceId;
         public final ComponentName mComponentName;
@@ -106,50 +107,11 @@ public class AppSelectListPreference extends CustomDialogPreference {
         }
     }
 
-    public class AppSelectListAdapter extends BaseAdapter implements Runnable {
+    public class AppSelectListAdapter extends BaseAdapter {
         private LayoutInflater mInflater;
-        private List<PackageItem> mInstalledPackages = new LinkedList<PackageItem>();
-
-        private final Handler mHandler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                // now add the special actions on top
-                PackageItem cameraItem = new PackageItem(getContext().getResources().getString(R.string.camera_entry),
-                        R.drawable.ic_camera, CAMERA_ENTRY);
-                mInstalledPackages.add(0, cameraItem);
-
-                PackageItem torchItem = new PackageItem(getContext().getResources().getString(R.string.torch_entry),
-                        R.drawable.ic_flashlight, TORCH_ENTRY);
-                mInstalledPackages.add(0, torchItem);
-
-                PackageItem musicNextItem = new PackageItem(getContext().getResources().getString(R.string.music_next_entry),
-                        R.drawable.ic_music_next, MUSIC_NEXT_ENTRY);
-                mInstalledPackages.add(0, musicNextItem);
-
-                PackageItem musicPrevItem = new PackageItem(getContext().getResources().getString(R.string.music_prev_entry),
-                        R.drawable.ic_music_prev, MUSIC_PREV_ENTRY);
-                mInstalledPackages.add(0, musicPrevItem);
-
-                PackageItem musicPlayItem = new PackageItem(getContext().getResources().getString(R.string.music_play_entry),
-                        R.drawable.ic_music_play, MUSIC_PLAY_ENTRY);
-                mInstalledPackages.add(0, musicPlayItem);
-
-                PackageItem wakeItem = new PackageItem(getContext().getResources().getString(R.string.wake_entry),
-                        R.drawable.ic_wakeup, WAKE_ENTRY);
-                mInstalledPackages.add(0, wakeItem);
-
-                PackageItem disabledItem = new PackageItem(getContext().getResources().getString(R.string.disabled_entry),
-                        R.drawable.ic_disabled, DISABLED_ENTRY);
-                mInstalledPackages.add(0, disabledItem);
-
-                notifyDataSetChanged();
-                updatePreferenceViews();
-            }
-        };
 
         public AppSelectListAdapter(Context context) {
             mInflater = LayoutInflater.from(context);
-            reloadList();
         }
 
         @Override
@@ -191,35 +153,6 @@ public class AppSelectListPreference extends CustomDialogPreference {
             return convertView;
         }
 
-        private void reloadList() {
-            mInstalledPackages.clear();
-            new Thread(this).start();
-        }
-
-        @Override
-        public void run() {
-            final Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-            mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-            List<ResolveInfo> installedAppsInfo = mPm.queryIntentActivities(mainIntent, 0);
-
-            for (ResolveInfo info : installedAppsInfo) {
-                ActivityInfo activity = info.activityInfo;
-                ApplicationInfo appInfo = activity.applicationInfo;
-                ComponentName componentName = new ComponentName(appInfo.packageName, activity.name);
-                CharSequence label = null;
-                try {
-                    label = activity.loadLabel(mPm);
-                } catch (Exception e) {
-                }
-                if (label != null) {
-                    final PackageItem item = new PackageItem(activity.loadLabel(mPm), 0, componentName);
-                    mInstalledPackages.add(item);
-                }
-            }
-            Collections.sort(mInstalledPackages);
-            mHandler.obtainMessage(0).sendToTarget();
-        }
-
         private PackageItem resolveApplication(ComponentName componentName) {
             for (PackageItem item : mInstalledPackages) {
                 if (item.mComponentName != null && item.mComponentName.equals(componentName)) {
@@ -246,6 +179,14 @@ public class AppSelectListPreference extends CustomDialogPreference {
         init();
     }
 
+    public void setPackageList(List<PackageItem> installedPackages) {
+        mInstalledPackages.clear();
+        mInstalledPackages.addAll(installedPackages);
+        addSpecialApps();
+        mAdapter.notifyDataSetChanged();
+        updatePreferenceViews();
+    }
+
     private void init() {
         mPm = getContext().getPackageManager();
         setDialogLayoutResource(R.layout.preference_dialog_applist);
@@ -255,6 +196,36 @@ public class AppSelectListPreference extends CustomDialogPreference {
         setDialogTitle(R.string.choose_app);
         setDialogIcon(null);
         mAdapter = new AppSelectListAdapter(getContext());
+    }
+
+    private void addSpecialApps() {
+        PackageItem cameraItem = new PackageItem(getContext().getResources().getString(R.string.camera_entry),
+                R.drawable.ic_camera, CAMERA_ENTRY);
+        mInstalledPackages.add(0, cameraItem);
+
+        PackageItem torchItem = new PackageItem(getContext().getResources().getString(R.string.torch_entry),
+                R.drawable.ic_flashlight, TORCH_ENTRY);
+        mInstalledPackages.add(0, torchItem);
+
+        PackageItem musicNextItem = new PackageItem(getContext().getResources().getString(R.string.music_next_entry),
+                R.drawable.ic_music_next, MUSIC_NEXT_ENTRY);
+        mInstalledPackages.add(0, musicNextItem);
+
+        PackageItem musicPrevItem = new PackageItem(getContext().getResources().getString(R.string.music_prev_entry),
+                R.drawable.ic_music_prev, MUSIC_PREV_ENTRY);
+        mInstalledPackages.add(0, musicPrevItem);
+
+        PackageItem musicPlayItem = new PackageItem(getContext().getResources().getString(R.string.music_play_entry),
+                R.drawable.ic_music_play, MUSIC_PLAY_ENTRY);
+        mInstalledPackages.add(0, musicPlayItem);
+
+        PackageItem wakeItem = new PackageItem(getContext().getResources().getString(R.string.wake_entry),
+                R.drawable.ic_wakeup, WAKE_ENTRY);
+        mInstalledPackages.add(0, wakeItem);
+
+        PackageItem disabledItem = new PackageItem(getContext().getResources().getString(R.string.disabled_entry),
+                R.drawable.ic_disabled, DISABLED_ENTRY);
+        mInstalledPackages.add(0, disabledItem);
     }
 
     @Override
