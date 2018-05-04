@@ -64,7 +64,7 @@ public class KeyHandler implements DeviceKeyHandler {
 
     private static final String TAG = "KeyHandler";
     private static final boolean DEBUG = false;
-    private static final boolean DEBUG_SENSOR = false;
+    private static final boolean DEBUG_SENSOR = true;
 
     private static final int GESTURE_WAKELOCK_DURATION = 2000;
     private static final String KEY_CONTROL_PATH = "/proc/s1302/virtual_key";
@@ -158,7 +158,7 @@ public class KeyHandler implements DeviceKeyHandler {
         @Override
         public void onSensorChanged(SensorEvent event) {
             mProxyIsNear = event.values[0] < mSensor.getMaximumRange();
-            if (DEBUG_SENSOR) Log.i(TAG, "mProxyIsNear = " + mProxyIsNear);
+            if (DEBUG_SENSOR) Log.i(TAG, "mProxyIsNear = " + mProxyIsNear + " mProxyWasNear = " + mProxyWasNear);
             if (mUseProxiCheck) {
                 if(Utils.fileWritable(FPC_CONTROL_PATH)) {
                     Utils.writeValue(FPC_CONTROL_PATH, mProxyIsNear ? "1" : "0");
@@ -167,6 +167,7 @@ public class KeyHandler implements DeviceKeyHandler {
             if (mUseWaveCheck || mUsePocketCheck) {
                 if (mProxyWasNear && !mProxyIsNear) {
                     long delta = SystemClock.elapsedRealtime() - mProxySensorTimestamp;
+                    if (DEBUG_SENSOR) Log.i(TAG, "delta = " + delta);
                     if (mUseWaveCheck && delta < HANDWAVE_MAX_DELTA_MS) {
                         launchDozePulse();
                     }
@@ -420,10 +421,10 @@ public class KeyHandler implements DeviceKeyHandler {
     private void onDisplayOff() {
         if (DEBUG) Log.i(TAG, "Display off");
         if (enableProxiSensor()) {
+            mProxyWasNear = false;
             mSensorManager.registerListener(mProximitySensor, mSensor,
                     SensorManager.SENSOR_DELAY_NORMAL);
             mProxySensorTimestamp = SystemClock.elapsedRealtime();
-            mProxyWasNear = false;
         }
         if (mUseTiltCheck) {
             mSensorManager.registerListener(mTiltSensorListener, mTiltSensor,
