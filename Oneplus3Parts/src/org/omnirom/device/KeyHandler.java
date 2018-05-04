@@ -64,7 +64,7 @@ public class KeyHandler implements DeviceKeyHandler {
 
     private static final String TAG = "KeyHandler";
     private static final boolean DEBUG = false;
-    private static final boolean DEBUG_SENSOR = false;
+    private static final boolean DEBUG_SENSOR = true;
 
     private static final int GESTURE_WAKELOCK_DURATION = 2000;
     private static final String KEY_CONTROL_PATH = "/proc/s1302/virtual_key";
@@ -142,7 +142,7 @@ public class KeyHandler implements DeviceKeyHandler {
     private final NotificationManager mNoMan;
     private final AudioManager mAudioManager;
     private SensorManager mSensorManager;
-    private Sensor mSensor;
+    private Sensor mProximitySensor;
     private boolean mProxyIsNear;
     private boolean mUseProxiCheck;
     private Sensor mTiltSensor;
@@ -268,7 +268,7 @@ public class KeyHandler implements DeviceKeyHandler {
         mNoMan = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
-        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         mTiltSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_TILT_DETECTOR);
         IntentFilter screenStateFilter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         screenStateFilter.addAction(Intent.ACTION_SCREEN_OFF);
