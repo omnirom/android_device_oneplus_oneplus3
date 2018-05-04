@@ -64,7 +64,7 @@ public class KeyHandler implements DeviceKeyHandler {
 
     private static final String TAG = "KeyHandler";
     private static final boolean DEBUG = false;
-    private static final boolean DEBUG_SENSOR = false;
+    private static final boolean DEBUG_SENSOR = true;
 
     private static final int GESTURE_WAKELOCK_DURATION = 2000;
     private static final String KEY_CONTROL_PATH = "/proc/s1302/virtual_key";
@@ -142,7 +142,7 @@ public class KeyHandler implements DeviceKeyHandler {
     private final NotificationManager mNoMan;
     private final AudioManager mAudioManager;
     private SensorManager mSensorManager;
-    private Sensor mSensor;
+    private Sensor mProximitySensor;
     private boolean mProxyIsNear;
     private boolean mUseProxiCheck;
     private Sensor mTiltSensor;
@@ -153,8 +153,9 @@ public class KeyHandler implements DeviceKeyHandler {
     private boolean mUseWaveCheck;
     private boolean mUsePocketCheck;
     private WindowManagerPolicy mPolicy;
+    private boolean mUseSystemProxiCheck;
 
-    private SensorEventListener mProximitySensor = new SensorEventListener() {
+    /*private SensorEventListener mProximitySensor = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
             mProxyIsNear = event.values[0] < mSensor.getMaximumRange();
@@ -182,7 +183,7 @@ public class KeyHandler implements DeviceKeyHandler {
         @Override
         public void onAccuracyChanged(Sensor sensor, int accuracy) {
         }
-    };
+    };*/
 
     private SensorEventListener mTiltSensorListener = new SensorEventListener() {
         @Override
@@ -219,6 +220,9 @@ public class KeyHandler implements DeviceKeyHandler {
             mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
                     Settings.System.DEVICE_FEATURE_SETTINGS),
                     false, this);
+            mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SYSTEM_PROXI_CHECK_ENABLED),
+                    false, this);
             update();
             updateDozeSettings();
         }
@@ -243,6 +247,9 @@ public class KeyHandler implements DeviceKeyHandler {
             mUseProxiCheck = Settings.System.getIntForUser(
                     mContext.getContentResolver(), Settings.System.DEVICE_PROXI_CHECK_ENABLED, 1,
                     UserHandle.USER_CURRENT) == 1;
+            mUseSystemProxiCheck = Settings.System.getIntForUser(resolver,
+                    Settings.System.SYSTEM_PROXI_CHECK_ENABLED, 0,
+                    UserHandle.USER_CURRENT) != 0;
         }
     }
 
@@ -268,7 +275,7 @@ public class KeyHandler implements DeviceKeyHandler {
         mNoMan = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
-        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         mTiltSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_TILT_DETECTOR);
         IntentFilter screenStateFilter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         screenStateFilter.addAction(Intent.ACTION_SCREEN_OFF);
@@ -315,7 +322,7 @@ public class KeyHandler implements DeviceKeyHandler {
 
     @Override
     public boolean isDisabledKeyEvent(KeyEvent event) {
-        boolean isProxyCheckRequired = mUseProxiCheck &&
+        boolean isProxyCheckRequired = (mUseProxiCheck || mUseSystemProxiCheck) &&
                 ArrayUtils.contains(sProxiCheckedGestures, event.getScanCode());
         if (mProxyIsNear && isProxyCheckRequired) {
             if (DEBUG) Log.i(TAG, "isDisabledKeyEvent: blocked by proxi sensor - scanCode=" + event.getScanCode());
@@ -410,7 +417,7 @@ public class KeyHandler implements DeviceKeyHandler {
     private void onDisplayOn() {
         if (DEBUG) Log.i(TAG, "Display on");
         if (enableProxiSensor()) {
-            mSensorManager.unregisterListener(mProximitySensor, mSensor);
+            //mSensorManager.unregisterListener(mProximitySensor, mSensor);
         }
         if (mUseTiltCheck) {
             mSensorManager.unregisterListener(mTiltSensorListener, mTiltSensor);
@@ -420,8 +427,8 @@ public class KeyHandler implements DeviceKeyHandler {
     private void onDisplayOff() {
         if (DEBUG) Log.i(TAG, "Display off");
         if (enableProxiSensor()) {
-            mSensorManager.registerListener(mProximitySensor, mSensor,
-                    SensorManager.SENSOR_DELAY_NORMAL);
+            //mSensorManager.registerListener(mProximitySensor, mSensor,
+            //        SensorManager.SENSOR_DELAY_NORMAL);
             mProxySensorTimestamp = SystemClock.elapsedRealtime();
             mProxyWasNear = false;
         }
@@ -557,7 +564,7 @@ public class KeyHandler implements DeviceKeyHandler {
     }
 
     private boolean enableProxiSensor() {
-        return mUsePocketCheck || mUseWaveCheck || mUseProxiCheck;
+        return mUsePocketCheck || mUseWaveCheck || mUseProxiCheck || mUseSystemProxiCheck;
     }
 
     private void updateDozeSettings() {
@@ -589,5 +596,29 @@ public class KeyHandler implements DeviceKeyHandler {
 
     IStatusBarService getStatusBarService() {
         return IStatusBarService.Stub.asInterface(ServiceManager.getService("statusbar"));
+    }
+
+    @Override
+    public void onProxySensorChanged(SensorEvent event) {
+        mProxyIsNear = event.values[0] < mProximitySensor.getMaximumRange();
+        if (DEBUG_SENSOR) Log.i(TAG, "mProxyIsNear = " + mProxyIsNear);
+        if (mUseProxiCheck || mUseSystemProxiCheck) {
+            if(Utils.fileWritable(FPC_CONTROL_PATH)) {
+                Utils.writeValue(FPC_CONTROL_PATH, mProxyIsNear ? "1" : "0");
+            }
+        }
+        if (mUseWaveCheck || mUsePocketCheck) {
+            if (mProxyWasNear && !mProxyIsNear) {
+                long delta = SystemClock.elapsedRealtime() - mProxySensorTimestamp;
+                if (mUseWaveCheck && delta < HANDWAVE_MAX_DELTA_MS) {
+                    launchDozePulse();
+                }
+                if (mUsePocketCheck && delta > POCKET_MIN_DELTA_MS) {
+                    launchDozePulse();
+                }
+            }
+            mProxySensorTimestamp = SystemClock.elapsedRealtime();
+            mProxyWasNear = mProxyIsNear;
+        }
     }
 }

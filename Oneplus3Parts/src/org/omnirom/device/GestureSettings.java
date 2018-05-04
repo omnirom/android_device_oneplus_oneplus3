@@ -75,7 +75,7 @@ public class GestureSettings extends PreferenceFragment implements
     public static final String DEVICE_GESTURE_MAPPING_8 = "device_gesture_mapping_8_0";
     public static final String DEVICE_GESTURE_MAPPING_9 = "device_gesture_mapping_9_0";
 
-    private TwoStatePreference mProxiSwitch;
+    //private TwoStatePreference mProxiSwitch;
     private TwoStatePreference mOffscreenGestureFeedbackSwitch;
     private AppSelectListPreference mDoubleSwipeApp;
     private AppSelectListPreference mCircleApp;
@@ -95,9 +95,9 @@ public class GestureSettings extends PreferenceFragment implements
         setPreferencesFromResource(R.xml.gesture_settings, rootKey);
         mPm = getContext().getPackageManager();
 
-        mProxiSwitch = (TwoStatePreference) findPreference(KEY_PROXI_SWITCH);
+        /*mProxiSwitch = (TwoStatePreference) findPreference(KEY_PROXI_SWITCH);
         mProxiSwitch.setChecked(Settings.System.getInt(getContext().getContentResolver(),
-                Settings.System.DEVICE_PROXI_CHECK_ENABLED, 1) != 0);
+                Settings.System.DEVICE_PROXI_CHECK_ENABLED, 1) != 0);*/
 
         mOffscreenGestureFeedbackSwitch = (TwoStatePreference) findPreference(KEY_OFF_SCREEN_GESTURE_FEEDBACK_SWITCH);
         mOffscreenGestureFeedbackSwitch.setChecked(Settings.System.getInt(getContext().getContentResolver(),
@@ -168,11 +168,11 @@ public class GestureSettings extends PreferenceFragment implements
 
     @Override
     public boolean onPreferenceTreeClick(Preference preference) {
-        if (preference == mProxiSwitch) {
+        /*if (preference == mProxiSwitch) {
             Settings.System.putInt(getContext().getContentResolver(),
                     Settings.System.DEVICE_PROXI_CHECK_ENABLED, mProxiSwitch.isChecked() ? 1 : 0);
             return true;
-        }
+        }*/
         if (preference == mOffscreenGestureFeedbackSwitch) {
             Settings.System.putInt(getContext().getContentResolver(),
                     Settings.System.DEVICE_OFF_SCREEN_GESTURE_FEEDBACK_ENABLED, mOffscreenGestureFeedbackSwitch.isChecked() ? 1 : 0);
