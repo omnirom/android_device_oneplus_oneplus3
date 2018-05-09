@@ -31,6 +31,8 @@
   <string name="hbm_mode_title">Modo de brillo alto</string>
   <string name="proxi_summary_head">Compruebe el sensor de proximidad para el manejo de gesto y huella digital del sensor</string>
   <string name="proxi_title_head">Control de proximidad</string>
+  <string name="off_screen_gesture_feedback_summary_head">Permiten retroalimentación háptica para gestos</string>
+  <string name="off_screen_gesture_feedback_title_head">Retroalimentación háptica</string>
   <string name="slider_mode_off">Apagado</string>
   <string name="slider_mode_vibrate">Vibrar</string>
   <string name="slider_mode_silent">Silencio</string>
@@ -74,8 +76,8 @@
   <string name="pocket_check_title">Bolsillo</string>
   <string name="ambient_display_enable">Visualización ambiental debe estar habilitada en configuración de pantalla</string>
   <string name="panel_category_title">Modos de panel</string>
-  <string name="panel_category_summary">Modos para el panel de correción de color</string>
+  <string name="panel_category_summary">Modos para el panel de corrección de color</string>
   <string name="off_mode_title">Apagado</string>
-  <string name="tile_panel_mode">Panel de modos</string>
+  <string name="tile_panel_mode">Modos del panel</string>
   <string name="tile_hbm_mode">Modos de brillo alto</string>
 </resources>
