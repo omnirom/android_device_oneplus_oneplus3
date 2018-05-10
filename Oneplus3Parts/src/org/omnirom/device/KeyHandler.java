@@ -64,7 +64,7 @@ public class KeyHandler implements DeviceKeyHandler {
 
     private static final String TAG = "KeyHandler";
     private static final boolean DEBUG = false;
-    private static final boolean DEBUG_SENSOR = true;
+    private static final boolean DEBUG_SENSOR = false;
 
     private static final int GESTURE_WAKELOCK_DURATION = 2000;
     private static final String KEY_CONTROL_PATH = "/proc/s1302/virtual_key";
