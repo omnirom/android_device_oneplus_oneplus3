@@ -14,4 +14,11 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources></resources>
+<resources>
+  <string name="app_name">Oneplus 3</string>
+  <string name="category_vibrator">Δόνηση</string>
+  <string name="vib_strength_title_head">Δύναμη</string>
+  <string name="vib_strength_summary_head">Καθορίστε την ένταση της δόνησης</string>
+  <string name="vib_test">Δοκιμή</string>
+  <string name="advanced_settings">Σύνθετες επιλογές</string>
+</resources>
