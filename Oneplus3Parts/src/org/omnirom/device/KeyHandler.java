@@ -146,7 +146,6 @@ public class KeyHandler implements DeviceKeyHandler {
     private boolean mProxyIsNear;
     private boolean mUseProxiCheck;
     private Sensor mTiltSensor;
-    private long mTiltSensorTimestamp;
     private boolean mUseTiltCheck;
     private boolean mProxyWasNear;
     private long mProxySensorTimestamp;
@@ -188,13 +187,6 @@ public class KeyHandler implements DeviceKeyHandler {
     private SensorEventListener mTiltSensorListener = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
-            long delta = SystemClock.elapsedRealtime() - mTiltSensorTimestamp;
-            if (delta < MIN_PULSE_INTERVAL_MS) {
-                return;
-            } else {
-                mTiltSensorTimestamp = SystemClock.elapsedRealtime();
-            }
-
             if (event.values[0] == 1) {
                 launchDozePulse();
             }
@@ -270,7 +262,7 @@ public class KeyHandler implements DeviceKeyHandler {
         mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        mTiltSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_TILT_DETECTOR);
+        mTiltSensor = getSensor(mSensorManager, "com.oneplus.sensor.pickup");
         IntentFilter screenStateFilter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         screenStateFilter.addAction(Intent.ACTION_SCREEN_OFF);
         mContext.registerReceiver(mScreenStateReceiver, screenStateFilter);
@@ -429,7 +421,6 @@ public class KeyHandler implements DeviceKeyHandler {
         if (mUseTiltCheck) {
             mSensorManager.registerListener(mTiltSensorListener, mTiltSensor,
                     SensorManager.SENSOR_DELAY_NORMAL, BATCH_LATENCY_IN_MS * 1000);
-            mTiltSensorTimestamp = SystemClock.elapsedRealtime();
         }
     }
 
@@ -590,5 +581,14 @@ public class KeyHandler implements DeviceKeyHandler {
 
     IStatusBarService getStatusBarService() {
         return IStatusBarService.Stub.asInterface(ServiceManager.getService("statusbar"));
+    }
+
+    protected static Sensor getSensor(SensorManager sm, String type) {
+        for (Sensor sensor : sm.getSensorList(Sensor.TYPE_ALL)) {
+            if (type.equals(sensor.getStringType())) {
+                return sensor;
+            }
+        }
+        return null;
     }
 }
