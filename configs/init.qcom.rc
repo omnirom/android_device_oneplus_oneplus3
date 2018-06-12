@@ -554,6 +554,9 @@ on post-fs-data
     # Create vpp directory
     mkdir /data/vendor/vpp 0770 media media
 
+    # default country code
+    setprop ro.boot.wificountrycode 00
+
 # start camera server as daemon
 service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
     class late_start
