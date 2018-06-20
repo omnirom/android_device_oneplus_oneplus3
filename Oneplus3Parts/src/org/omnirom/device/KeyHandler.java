@@ -142,7 +142,7 @@ public class KeyHandler implements DeviceKeyHandler {
     private final NotificationManager mNoMan;
     private final AudioManager mAudioManager;
     private SensorManager mSensorManager;
-    private Sensor mSensor;
+    private Sensor mPocketSensor;
     private boolean mProxyIsNear;
     private boolean mUseProxiCheck;
     private Sensor mTiltSensor;
@@ -156,7 +156,7 @@ public class KeyHandler implements DeviceKeyHandler {
     private SensorEventListener mProximitySensor = new SensorEventListener() {
         @Override
         public void onSensorChanged(SensorEvent event) {
-            mProxyIsNear = event.values[0] < mSensor.getMaximumRange();
+            mProxyIsNear = event.values[0] == 1;
             if (DEBUG_SENSOR) Log.i(TAG, "mProxyIsNear = " + mProxyIsNear + " mProxyWasNear = " + mProxyWasNear);
             if (mUseProxiCheck) {
                 if(Utils.fileWritable(FPC_CONTROL_PATH)) {
@@ -261,7 +261,7 @@ public class KeyHandler implements DeviceKeyHandler {
         mNoMan = (NotificationManager) mContext.getSystemService(Context.NOTIFICATION_SERVICE);
         mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         mSensorManager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
-        mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        mPocketSensor = getSensor(mSensorManager, "com.oneplus.sensor.pocket");
         mTiltSensor = getSensor(mSensorManager, "com.oneplus.sensor.pickup");
         IntentFilter screenStateFilter = new IntentFilter(Intent.ACTION_SCREEN_ON);
         screenStateFilter.addAction(Intent.ACTION_SCREEN_OFF);
@@ -403,7 +403,7 @@ public class KeyHandler implements DeviceKeyHandler {
     private void onDisplayOn() {
         if (DEBUG) Log.i(TAG, "Display on");
         if (enableProxiSensor()) {
-            mSensorManager.unregisterListener(mProximitySensor, mSensor);
+            mSensorManager.unregisterListener(mProximitySensor, mPocketSensor);
         }
         if (mUseTiltCheck) {
             mSensorManager.unregisterListener(mTiltSensorListener, mTiltSensor);
@@ -414,7 +414,7 @@ public class KeyHandler implements DeviceKeyHandler {
         if (DEBUG) Log.i(TAG, "Display off");
         if (enableProxiSensor()) {
             mProxyWasNear = false;
-            mSensorManager.registerListener(mProximitySensor, mSensor,
+            mSensorManager.registerListener(mProximitySensor, mPocketSensor,
                     SensorManager.SENSOR_DELAY_NORMAL);
             mProxySensorTimestamp = SystemClock.elapsedRealtime();
         }
@@ -590,5 +590,15 @@ public class KeyHandler implements DeviceKeyHandler {
             }
         }
         return null;
+    }
+
+    @Override
+    public boolean getCustomProxiIsNear(SensorEvent event) {
+        return event.values[0] == 1;
+    }
+
+    @Override
+    public String getCustomProxiSensor() {
+        return "com.oneplus.sensor.pocket";
     }
 }
