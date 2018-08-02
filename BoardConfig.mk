@@ -214,6 +214,7 @@ TARGET_FS_CONFIG_GEN := $(BOARD_PATH)/configs/config.fs
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
 
 # Recovery:Start
+TW_USE_TOOLBOX := true
 TARGET_RECOVERY_FSTAB := $(BOARD_PATH)/recovery/recovery.fstab
 TW_THEME := portrait_hdpi
 BOARD_HAS_NO_REAL_SDCARD := true
